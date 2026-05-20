@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Breath of the Beloved — Rumi & Shams Tabrizi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0F;
+    --bg-card: rgba(18, 18, 28, 0.85);
+    --text-primary: #F5F0EB;
+    --text-muted: #9C928A;
+    --accent: #C9A84C;
+    --accent-dim: rgba(201, 168, 76, 0.15);
+    --accent-glow: rgba(201, 168, 76, 0.08);
+    --border: rgba(201, 168, 76, 0.12);
+    --font-quote: 'Cormorant Garamond', Georgia, serif;
+    --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+    --radius: 16px;
+    --transition: 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--font-ui);
+    background: var(--bg);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .aurora {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    will-change: transform;
+    animation: blob 18s ease-in-out infinite alternate;
+  }
+
+  .aurora-blob:nth-child(1) {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.15), transparent 70%);
+    top: -15%; left: -10%;
+    animation-duration: 22s;
+  }
+
+  .aurora-blob:nth-child(2) {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(120, 80, 180, 0.12), transparent 70%);
+    bottom: -20%; right: -10%;
+    animation-duration: 26s;
+    animation-delay: -6s;
+  }
+
+  .aurora-blob:nth-child(3) {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(180, 120, 60, 0.10), transparent 70%);
+    top: 50%; left: 50%;
+    translate: -50% -50%;
+    animation-duration: 20s;
+    animation-delay: -12s;
+  }
+
+  @keyframes blob {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    25% { transform: translate(60px, -40px) scale(1.1) rotate(90deg); }
+    50% { transform: translate(-30px, 60px) scale(0.95) rotate(180deg); }
+    75% { transform: translate(40px, 30px) scale(1.05) rotate(270deg); }
+    100% { transform: translate(-50px, -20px) scale(1) rotate(360deg); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 700px;
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .card {
+    background: var(--bg-card);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 3.5rem 3rem;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.4s ease;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), transparent 40%, transparent 60%, rgba(201, 168, 76, 0.05));
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .source-label {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+  }
+
+  .quote-wrap {
+    position: relative;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quote-mark {
+    font-family: var(--font-quote);
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.3;
+    position: absolute;
+    top: -0.6rem;
+    left: -0.2rem;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .quote-text {
+    font-family: var(--font-quote);
+    font-size: 1.65rem;
+    line-height: 1.55;
+    font-weight: 400;
+    color: var(--text-primary);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-text em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .quote-text.fade-out {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .quote-text.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .attribution {
+    margin-top: 1.75rem;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    transition: opacity 0.5s ease 0.1s;
+  }
+
+  .attribution .name {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .attribution.fade-out {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .attribution.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .divider {
+    width: 2rem;
+    height: 1px;
+    background: var(--border);
+    margin: 2rem auto;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.7rem 1.75rem;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    outline: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-dim);
+    border-radius: 100px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+
+  .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .btn:active { transform: translateY(0) scale(0.98); }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .btn svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn:hover svg { transform: rotate(180deg); }
+
+  .btn-label {
+    position: relative;
+    z-index: 1;
+  }
+
+  .counter {
+    margin-top: 1.25rem;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 1rem; margin: 0.5rem; }
+    .card { padding: 2rem 1.5rem; }
+    .quote-text { font-size: 1.3rem; }
+    .quote-wrap { min-height: 180px; }
+    .quote-mark { font-size: 3rem; top: -0.4rem; left: 0; }
+    .source-label { font-size: 0.65rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-blob { animation: none !important; }
+    .quote-text, .attribution { transition: none !important; }
+    .btn, .btn::before, .btn svg { transition: none !important; }
+    .quote-text.fade-out, .attribution.fade-out { opacity: 0; transform: none; }
+    .quote-text.fade-in, .attribution.fade-in { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true">
+  <div class="aurora-blob"></div>
+  <div class="aurora-blob"></div>
+  <div class="aurora-blob"></div>
+</div>
+
+<main class="container">
+  <div class="card" role="article" aria-label="Rumi and Shams Tabrizi quote">
+    <span class="source-label" id="sourceLabel">Rumi</span>
+
+    <div class="quote-wrap">
+      <span class="quote-mark" aria-hidden="true">"</span>
+      <p class="quote-text fade-in" id="quoteText">
+        The minute I heard my first love story, I started looking for you, not knowing how blind that was. Lovers don't finally meet somewhere. They're in each other all along.
+      </p>
+    </div>
+
+    <p class="attribution fade-in" id="attribution">
+      — <span class="name">Rumi</span>
+    </p>
+
+    <div class="divider" role="presentation"></div>
+
+    <button class="btn" id="newQuoteBtn" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M1 4v6h6"/>
+        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+      </svg>
+      <span class="btn-label">New Wisdom</span>
+    </button>
+
+    <p class="counter" id="counter" aria-live="polite">1 / 1212</p>
+  </div>
+</main>
+
+<script>
+    const quotes = [
+    { text: "Listen to the reed and the tale it tells, how it sings of separation.", source: "Rumi" },
+    { text: "Ever since I was torn from the reed-bed, my lament has caused men and women to weep.", source: "Rumi" },
+    { text: "I want a heart that is torn, torn from separation, so that I may explain the pain of longing.", source: "Rumi" },
+    { text: "Whoever stays far from his root longs for the moment of reunion.", source: "Rumi" },
+    { text: "The reed's voice is fire, not wind. Whoever does not have this fire, let him be nothing.", source: "Rumi" },
+    { text: "The fire of love is what makes the reed's voice alive. It is the ferment of love that makes the wine potent.", source: "Rumi" },
+    { text: "Love is the flame that, when it blazes, consumes everything except the Beloved.", source: "Rumi" },
+    { text: "Reason is like a lamp — but love is the light that fills the room before the lamp is lit.", source: "Rumi" },
+    { text: "The intellect is a shadow, love is the sun. How can the shadow catch up with the sun?", source: "Rumi" },
+    { text: "Close your eyes to the world and open your inner eye. What you see in meditation is greater than what the world shows.", source: "Rumi" },
+    { text: "If you have not seen the devil, look at your own ego.", source: "Rumi" },
+    { text: "The Prophet said: 'Your worst enemy is your ego, which lies between your two sides.'", source: "Rumi" },
+    { text: "Kill your ego and give life to the heart. The ego is a mountain of ice — let it melt in the sun of love.", source: "Rumi" },
+    { text: "You thought you were a small ant, but under the shadow of divine love, you become an elephant.", source: "Rumi" },
+    { text: "What is to be done, O Muslims? I do not recognize myself. I am neither Christian nor Jew, neither Magian nor Muslim.", source: "Rumi" },
+    { text: "Not of the East, nor the West, not of the land, nor the sea — I have been set adrift in the ocean of the Beloved.", source: "Rumi" },
+    { text: "I have put duality away, I have seen the two worlds as one.", source: "Rumi" },
+    { text: "One call to the Beloved is worth more than a hundred pilgrimages.", source: "Rumi" },
+    { text: "The Kaaba is a house of stone, but the heart is the house of God.", source: "Rumi" },
+    { text: "Every idol is a veil that hides the face of the One. Break the idol and you will see.", source: "Rumi" },
+    { text: "The wine of the Beloved is not like other wine. One drop of it turns a sage into a madman.", source: "Rumi" },
+    { text: "I am like a drunkard who has lost his way. But the tavern-keeper is kind, and the wine is pure.", source: "Rumi" },
+    { text: "Drink the wine that makes you forget everything except the One who pours it.", source: "Rumi" },
+    { text: "The grape of the vine is not as sweet as the grape of the spirit. The garden of the world fades, but the garden of the heart is eternal.", source: "Rumi" },
+    { text: "Sow the seed of love in the field of the heart, and the harvest will be endless.", source: "Rumi" },
+    { text: "Love is the astrolabe of the mysteries of God.", source: "Rumi" },
+    { text: "Whatever I say in explanation of love, when I come to love itself, I am ashamed of my words.", source: "Rumi" },
+    { text: "The tongue is too small to contain the secret of love. Love cannot be explained — it can only be experienced.", source: "Rumi" },
+    { text: "Love is the water of life. Drink it with every breath.", source: "Rumi" },
+    { text: "Every drop of rain that falls is a messenger from the sky, carrying a secret to the earth.", source: "Rumi" },
+    { text: "The whole world is a single grain of sand on the beach of divine majesty.", source: "Rumi" },
+    { text: "If the ocean of truth could be contained in a cup, the cup would be the heart of the lover.", source: "Rumi" },
+    { text: "The lover's heart is like a mirror — if you breathe on it, it fogs; if you polish it, it shines.", source: "Rumi" },
+    { text: "Polish the mirror of your heart with the dust of love, and you will see the face of the Beloved.", source: "Rumi" },
+    { text: "When the mirror of the heart is polished, the light of the Beloved shines in it without obstruction.", source: "Rumi" },
+    { text: "The heart is not a heart if it is not broken. A broken heart is the workshop of God.", source: "Rumi" },
+    { text: "God says: 'I am with the broken-hearted. The broken heart is My home.'", source: "Rumi" },
+    { text: "Tear the veil of your ego with the hand of love.", source: "Rumi" },
+    { text: "The veil is not between you and God — you are the veil. Remove yourself and you will see.", source: "Rumi" },
+    { text: "You are the veil over your own heart. Lift yourself and behold the Beloved.", source: "Rumi" },
+    { text: "If you want God to speak to you, become silent. Silence is the language of God.", source: "Rumi" },
+    { text: "Be silent that the voice of God may speak through you.", source: "Rumi" },
+    { text: "Silence is the ocean. Speech is the river. When the river enters the ocean, it becomes the ocean.", source: "Rumi" },
+    { text: "Close your mouth to the world and open your ears to the music of the spheres.", source: "Rumi" },
+    { text: "The music of the spheres is not heard by the ear, but by the heart that has been purified.", source: "Rumi" },
+    { text: "The heart that beats with love is the drum of God's caravan.", source: "Rumi" },
+    { text: "The caravan of love passes through the world. Happy is the one who joins it.", source: "Rumi" },
+    { text: "Come, come, whoever you are. Wanderer, worshiper, lover of leaving. It doesn't matter.", source: "Rumi" },
+    { text: "Ours is not a caravan of despair. Come, even if you have broken your vows a hundred times.", source: "Rumi" },
+    { text: "Come, come again, whoever you are, come! Whether you are an infidel or a fire-worshiper, come!", source: "Rumi" },
+    { text: "This is the tavern of ruins. Even if you have repented a hundred times, the door is open.", source: "Rumi" },
+    { text: "The door of mercy is wider than the whole universe. Do not despair of God's mercy.", source: "Rumi" },
+    { text: "If you have lost your way a thousand times, the road still welcomes you.", source: "Rumi" },
+    { text: "The friend who never forgets you is waiting. Why do you delay?", source: "Rumi" },
+    { text: "Do not wait for tomorrow. The moment of meeting is now.", source: "Rumi" },
+    { text: "Yesterday is gone, tomorrow is a mystery, today is a gift. That is why it is called the present.", source: "Rumi" },
+    { text: "When you die, the angels will ask you: 'What did you bring?' Not 'Who was your father?'", source: "Rumi" },
+    { text: "Death is a wedding with the Beloved. Why do you fear it?", source: "Rumi" },
+    { text: "The day of death is the day of union. Do not grieve for those who depart in love.", source: "Rumi" },
+    { text: "On the day of death, the soul does not die — it is released from the cage of the body.", source: "Rumi" },
+    { text: "The bird of the soul has been trapped in the cage of the body. Death is the opening of the cage door.", source: "Rumi" },
+    { text: "You fear death because you think it is an end. But it is only a new beginning.", source: "Rumi" },
+    { text: "What appears to be the sunset is the sunrise for the soul.", source: "Rumi" },
+    { text: "Die before you die, so that you may live forever.", source: "Rumi" },
+    { text: "The sun of the spirit never sets. It only hides from those who close their eyes.", source: "Rumi" },
+    { text: "If you want the moon, do not hide from the night.", source: "Rumi" },
+    { text: "The dark night of the soul is the womb of the morning. Trust the process.", source: "Rumi" },
+    { text: "The winter of separation is followed by the spring of reunion. Have patience.", source: "Rumi" },
+    { text: "The rose does not bloom without thorns. The wine is not sweet without pressing.", source: "Rumi" },
+    { text: "The press of the wine is the pain of the soul. Without it, no sweetness arises.", source: "Rumi" },
+    { text: "The beloved's hand is always at work. Do not mistake the chisel for the sculptor.", source: "Rumi" },
+    { text: "You are the clay, I am the potter — said God. Let yourself be shaped on the wheel of love.", source: "Rumi" },
+    { text: "The potter's wheel of fate turns, but the hand that turns it is love.", source: "Rumi" },
+    { text: "All of our actions are the threads of a tapestry woven by the Beloved. We see only the knots on the back.", source: "Rumi" },
+    { text: "The master weaver knows what no thread can see. Trust the pattern.", source: "Rumi" },
+    { text: "The whole universe is a book of signs for those who can read.", source: "Rumi" },
+    { text: "Every leaf that falls is a letter from God. Read it with the heart.", source: "Rumi" },
+    { text: "The garden of the world is full of wonders for those who have eyes to see.", source: "Rumi" },
+    { text: "The eye of the body sees the form, but the eye of the heart sees the meaning.", source: "Rumi" },
+    { text: "The form is a ladder to the meaning. Do not stop at the ladder — climb.", source: "Rumi" },
+    { text: "All forms are veils of the formless. Lift the veil and see the face of the Beloved.", source: "Rumi" },
+    { text: "The world is a dream. Wake up and see the reality behind it.", source: "Rumi" },
+    { text: "You are asleep in the world of forms. Wake up, O heart, and see the formless.", source: "Rumi" },
+    { text: "This world is a bridge. Pass over it, but do not build your house on it.", source: "Rumi" },
+    { text: "The world is a prison for the believer and a paradise for the unbeliever.", source: "Rumi" },
+    { text: "Do not be attached to this world, for it is a passing shadow.", source: "Rumi" },
+    { text: "The shadow passes, but the sun remains. Set your heart on the sun, not the shadow.", source: "Rumi" },
+    { text: "The ocean of truth is one, but the shells are many. Every heart finds its own pearl.", source: "Rumi" },
+    { text: "The diver of the sea of truth must be willing to leave the shore.", source: "Rumi" },
+    { text: "Do not be a copyist — be the original. Write your own scripture with your own blood.", source: "Rumi" },
+    { text: "The pen of the lover writes in invisible ink. Only the heart can read it.", source: "Rumi" },
+    { text: "The ink of the scholar is holier than the blood of the martyr — but the blood of the lover is holier than both.", source: "Rumi" },
+    { text: "The path of love is not for the faint-hearted. It requires the courage to lose yourself.", source: "Rumi" },
+    { text: "Love is a battlefield where the only victory is surrender.", source: "Rumi" },
+    { text: "The lover is a king who has lost his throne. But in losing it, he finds the real kingdom.", source: "Rumi" },
+    { text: "The kingdom of the heart is greater than all the kingdoms of the world.", source: "Rumi" },
+    { text: "The beggar who loves God is richer than the king who loves gold.", source: "Rumi" },
+    { text: "Wealth is not in gold but in the heart's contentment. The richest person is the one who needs nothing.", source: "Rumi" },
+    { text: "Poverty is not lack of money — it is the emptiness of the heart that waits for God.", source: "Rumi" },
+    { text: "True poverty is to be empty of everything except the Beloved.", source: "Rumi" },
+    { text: "The treasure of God is hidden in the ruins of the heart.", source: "Rumi" },
+    { text: "Go to the ruins of your heart and dig. The treasure is buried there.", source: "Rumi" },
+    { text: "You carry the treasure within you, but you search for it outside.", source: "Rumi" },
+    { text: "The treasure you seek is hidden in the last place you will look — inside yourself.", source: "Rumi" },
+    { text: "The philosopher seeks truth in books. The mystic seeks it in the heart. The lover finds it everywhere.", source: "Rumi" },
+    { text: "The scholar talks about the road. The lover walks it.", source: "Rumi" },
+    { text: "Knowledge that does not lead to love is a burden on the soul.", source: "Rumi" },
+    { text: "The one who knows and does not love is like a lamp that does not give light.", source: "Rumi" },
+    { text: "The sun of love shines on all alike. Why do you hide from its rays?", source: "Rumi" },
+    { text: "The light of love shines everywhere, but only the heart that is open can receive it.", source: "Rumi" },
+    { text: "The door of the heart is the door of heaven. Open it and enter.", source: "Rumi" },
+    { text: "The key to the heart is love. Without it, the door remains locked.", source: "Rumi" },
+    { text: "Love is the key that opens every lock. With it, the impossible becomes possible.", source: "Rumi" },
+    { text: "The lover's heart is the throne of God. Keep it pure.", source: "Rumi" },
+    { text: "A pure heart is a garden of flowers. Every word that comes from it is a fragrance.", source: "Rumi" },
+    { text: "The fragrance of the rose comes from the garden of the heart.", source: "Rumi" },
+    { text: "The scent of the Beloved is carried by every breeze. Can you smell it?", source: "Rumi" },
+    { text: "The morning breeze carries the fragrance of the Beloved's hair. Open your senses.", source: "Rumi" },
+    { text: "The spring of love has arrived. Let the garden of your heart bloom.", source: "Rumi" },
+    { text: "The winter of the ego is ending. The spring of the spirit is here.", source: "Rumi" },
+    { text: "Let the river of love flow through the garden of your soul.", source: "Rumi" },
+    { text: "The river of love carries everything to the ocean of the Beloved. Surrender to the current.", source: "Rumi" },
+    { text: "Do not build dams against the river of love. Let it flow and cleanse you.", source: "Rumi" },
+    { text: "The flood of love sweeps away everything that is not the Beloved. Be grateful for the destruction.", source: "Rumi" },
+    { text: "The wine of love intoxicates in a way that no earthly wine can. It makes you sober for the first time.", source: "Rumi" },
+    { text: "Drink the wine of the spirit, and you will never thirst again.", source: "Rumi" },
+    { text: "The water of life flows in the heart of the lover. Drink from it and live forever.", source: "Rumi" },
+    { text: "The fountain of immortality is within you. Why do you search for it in distant lands?", source: "Rumi" },
+    { text: "The journey to God is not a journey through space. It is a journey through the heart.", source: "Rumi" },
+    { text: "The path to God is shorter than the blink of an eye — if you know where to look.", source: "Rumi" },
+    { text: "The distance between you and God is only the thickness of your ego.", source: "Rumi" },
+    { text: "The veil of the ego is thinner than a spider's web, yet stronger than iron.", source: "Rumi" },
+    { text: "Cut the web of the ego with the sword of love.", source: "Rumi" },
+    { text: "The sword of love cuts without wounding. It severs the rope of attachment.", source: "Rumi" },
+    { text: "Sever the rope of attachment to this world, and you will be free.", source: "Rumi" },
+    { text: "Freedom is not in the absence of chains, but in the heart that is attached to nothing.", source: "Rumi" },
+    { text: "The heart that is attached to nothing is free. The heart that is attached to everything is in chains.", source: "Rumi" },
+    { text: "The chain of desire is longer than the longest river. Break it with the axe of contentment.", source: "Rumi" },
+    { text: "Contentment is the treasure that never diminishes.", source: "Rumi" },
+    { text: "The one who is content has everything. The one who is greedy has nothing.", source: "Rumi" },
+    { text: "Greed is a shadow that grows as the light fades. Turn toward the sun of love.", source: "Rumi" },
+    { text: "The sun of truth shines on everyone, but the blind cannot see it.", source: "Rumi" },
+    { text: "Open the eye of the heart and see what the eye of the body cannot.", source: "Rumi" },
+    { text: "The eye of the heart sees beyond time. It sees the eternal in the temporal.", source: "Rumi" },
+    { text: "The temporal is the veil of the eternal. Pierce it with the needle of love.", source: "Rumi" },
+    { text: "The needle of love sews the torn fabric of the soul.", source: "Rumi" },
+    { text: "The garment of the soul is woven with the thread of love. Wear it with grace.", source: "Rumi" },
+    { text: "The tailor of fate cuts the cloth of our lives. Trust the pattern.", source: "Rumi" },
+    { text: "The pattern of the universe is woven with the thread of love.", source: "Rumi" },
+    { text: "Love is the warp and the woof of creation. Everything is held together by it.", source: "Rumi" },
+    { text: "The fabric of existence is love. Do not tear it with hatred.", source: "Rumi" },
+    { text: "Hatred is a fire that burns the one who holds it. Drop it and be free.", source: "Rumi" },
+    { text: "The fire of anger burns the house of the heart. Extinguish it with the water of forgiveness.", source: "Rumi" },
+    { text: "Forgiveness is the water that quenches the fire of revenge.", source: "Rumi" },
+    { text: "The river of mercy flows through the world. Bathe in it and be cleansed.", source: "Rumi" },
+    { text: "The sea of mercy has no shore. Dive into it without fear.", source: "Rumi" },
+    { text: "The ocean of divine mercy is vast enough to drown all sins.", source: "Rumi" },
+    { text: "Do not measure God's mercy with the small cup of your understanding.", source: "Rumi" },
+    { text: "The scale of justice is balanced by the hand of mercy.", source: "Rumi" },
+    { text: "Justice without mercy is cruelty. Mercy without justice is chaos. Love is the balance of both.", source: "Rumi" },
+    { text: "The balance of love is the measure of all things.", source: "Rumi" },
+    { text: "The measure of a person is not their wealth, but the depth of their love.", source: "Rumi" },
+    { text: "The depth of the ocean cannot be measured by a stick. The depth of love cannot be measured by the mind.", source: "Rumi" },
+    { text: "The mind measures and divides. Love unites and transcends.", source: "Rumi" },
+    { text: "The mind is a guest in the house of the heart. Do not let the guest become the master.", source: "Rumi" },
+    { text: "The intellect is a candle that lights the path — but do not mistake the candle for the destination.", source: "Rumi" },
+    { text: "The candle of the intellect is useful, but the sun of love illuminates everything.", source: "Rumi" },
+    { text: "The moon of the intellect reflects the light of the sun of love. Do not mistake the reflection for the source.", source: "Rumi" },
+    { text: "The source of light is one, but the reflections are many.", source: "Rumi" },
+    { text: "The one light shines through many windows. Do not quarrel over the windows.", source: "Rumi" },
+    { text: "The lamps are different, but the light is the same. It comes from beyond.", source: "Rumi" },
+    { text: "The light of God shines through every soul, but the veils are different.", source: "Rumi" },
+    { text: "The veils that hide the light are woven by our own hands. Unravel them.", source: "Rumi" },
+    { text: "Unravel the knots of the ego with the fingers of love.", source: "Rumi" },
+    { text: "The fingers of love are gentle but strong. They untie what the ego has bound.", source: "Rumi" },
+    { text: "The knot of the self is the hardest to untie. But love has patience.", source: "Rumi" },
+    { text: "Love is patient, love is kind. It does not boast, it does not insist on its own way.", source: "Rumi" },
+    { text: "The way of love is not a way of force. It is a way of attraction.", source: "Rumi" },
+    { text: "The magnet of love attracts the heart to its true home.", source: "Rumi" },
+    { text: "The heart knows its home. It is restless until it returns.", source: "Rumi" },
+    { text: "The bird of the heart is homesick for the eternal nest. Let it fly.", source: "Rumi" },
+    { text: "The cage of the body cannot hold the bird of the soul when it hears the call of the Beloved.", source: "Rumi" },
+    { text: "The call of the Beloved comes on every breeze. Listen with the heart.", source: "Rumi" },
+    { text: "The voice of the Beloved speaks in every sound. Can you hear it beneath the noise?", source: "Rumi" },
+    { text: "The music of the spheres is the voice of the Beloved singing through creation.", source: "Rumi" },
+    { text: "Creation is a song of love. Every creature is a note in the symphony.", source: "Rumi" },
+    { text: "The symphony of existence is composed by the Beloved. We are both the instrument and the musician.", source: "Rumi" },
+    { text: "The musician of love plays the reed of the soul. Let yourself be played.", source: "Rumi" },
+    { text: "The reed flute is hollow so that the breath can pass through it. Empty yourself of yourself.", source: "Rumi" },
+    { text: "Emptiness is the vessel of the divine. Fill yourself with the breath of love.", source: "Rumi" },
+    { text: "The vessel of the heart must be emptied before it can be filled with wine.", source: "Rumi" },
+    { text: "Pour out the old wine of the ego so that the new wine of the spirit may enter.", source: "Rumi" },
+    { text: "The new wine of love cannot be poured into old vessels. Become new.", source: "Rumi" },
+    { text: "Renew yourself in the fire of love. Burn away the old and become fresh.", source: "Rumi" },
+    { text: "The phoenix of the soul rises from the ashes of the ego.", source: "Rumi" },
+    { text: "Burn in the fire of love and be reborn. The ashes of the ego are the soil of the spirit.", source: "Rumi" },
+    { text: "The soil of the heart must be broken before the seed of love can grow.", source: "Rumi" },
+    { text: "The seed of love grows in the soil of surrender. Water it with tears of longing.", source: "Rumi" },
+    { text: "The tears of the lover are pearls that adorn the crown of the soul.", source: "Rumi" },
+    { text: "The rain of tears waters the garden of the heart. Without it, nothing grows.", source: "Rumi" },
+    { text: "The cloud of grief carries the rain of mercy. Do not curse the cloud.", source: "Rumi" },
+    { text: "Grief is a teacher. It opens doors that joy cannot.", source: "Rumi" },
+    { text: "The door of the heart is opened by the key of sorrow as well as the key of joy.", source: "Rumi" },
+    { text: "Both joy and sorrow are guests in the house of the heart. Welcome them both.", source: "Rumi" },
+    { text: "The guest house of the heart receives all visitors. Each one is a guide from the unseen.", source: "Rumi" },
+    { text: "The unseen world sends messengers in every form. Recognize them.", source: "Rumi" },
+    { text: "The messenger of the Beloved may come in disguise. Do not turn them away.", source: "Rumi" },
+    { text: "The beggar at your door may be the Beloved in disguise. Give without hesitation.", source: "Rumi" },
+    { text: "Generosity is the flower of love. It blooms without expecting anything in return.", source: "Rumi" },
+    { text: "The rose gives its fragrance to the hands that crush it. Be like the rose.", source: "Rumi" },
+    { text: "The rose does not ask who smells it. It simply blooms.", source: "Rumi" },
+    { text: "Bloom where you are planted. The garden of the world needs your beauty.", source: "Rumi" },
+    { text: "The beauty of the rose is a reflection of divine beauty. See the source in everything beautiful.", source: "Rumi" },
+    { text: "Every beautiful thing is a sign pointing to the source of all beauty.", source: "Rumi" },
+    { text: "The source of beauty is beyond form. The forms are only hints.", source: "Rumi" },
+    { text: "The hint of the Beloved is in every face. Look with the eye of the heart.", source: "Rumi" },
+    { text: "The face of the friend is everywhere. Why do you search only in the mosque?", source: "Rumi" },
+    { text: "The temple of God is the heart of the lover. Enter it with reverence.", source: "Rumi" },
+    { text: "The sanctuary of the heart is holier than any temple made of stone.", source: "Rumi" },
+    { text: "The pilgrimage of the heart is greater than any journey to a holy place.", source: "Rumi" },
+    { text: "Circumambulate the heart of the lover, for there God dwells.", source: "Rumi" },
+    { text: "The house of God is not in Mecca alone. It is wherever the heart opens.", source: "Rumi" },
+    { text: "The heart that opens to love opens to God.", source: "Rumi" },
+    { text: "The opening of the heart is the beginning of the journey.", source: "Rumi" },
+    { text: "The journey of a thousand miles begins with a single heartbeat toward the Beloved.", source: "Rumi" },
+    { text: "Every heartbeat is a step on the path of love.", source: "Rumi" },
+    { text: "The path of love is not linear. It is a spiral that returns to the center.", source: "Rumi" },
+    { text: "The center of the soul is the point where the eternal meets the temporal. Stand in that point.", source: "Rumi" },
+    { text: "The point of stillness at the center of the turning wheel is the presence of the Beloved.", source: "Rumi" },
+    { text: "The wheel of existence turns, but the center remains still. Be anchored in the center.", source: "Rumi" },
+    { text: "The stillness at the center of the storm is the peace of God. Find it within.", source: "Rumi" },
+    { text: "The peace that passes understanding is found in the heart that has surrendered.", source: "Rumi" },
+    { text: "Surrender is not weakness. It is the highest form of strength.", source: "Rumi" },
+    { text: "The strength of the lover is in their vulnerability. The bow that is bent shoots the arrow farthest.", source: "Rumi" },
+    { text: "The arrow of love flies straight to the heart of the Beloved. Let yourself be the bow.", source: "Rumi" },
+    { text: "The archer of love never misses. Surrender to the aim.", source: "Rumi" },
+    { text: "The aim of life is not happiness. It is love. Happiness is the byproduct.", source: "Rumi" },
+    { text: "The byproduct of love is joy. The fruit of the spirit is peace.", source: "Rumi" },
+    { text: "The fruit of the tree of life is love. Eat and be nourished.", source: "Rumi" },
+    { text: "The tree of love is rooted in the heart. Water it with attention.", source: "Rumi" },
+    { text: "Attention is the water of the soul. Where attention goes, the soul grows.", source: "Rumi" },
+    { text: "The soul grows in the direction of its attention. Turn your attention to the Beloved.", source: "Rumi" },
+    { text: "The direction of prayer is the heart of the lover. Turn toward it.", source: "Rumi" },
+    { text: "The qibla of the lover is the face of the Beloved. It is everywhere and nowhere.", source: "Rumi" },
+    { text: "The Beloved has no face, yet every face reflects the Beloved.", source: "Rumi" },
+    { text: "The face of the Beloved is in the eyes of the one who sees with love.", source: "Rumi" },
+    { text: "To see with love is to see truly. Without love, vision is blind.", source: "Rumi" },
+    { text: "Blindness is not the lack of eyes. It is the lack of love.", source: "Rumi" },
+    { text: "The blind man sees the dust but not the sun. The lover sees the sun in every speck of dust.", source: "Rumi" },
+    { text: "Every atom of creation dances in the light of the Beloved. Can you see the dance?", source: "Rumi" },
+    { text: "The dance of the atoms is the praise of the creator. Everything that exists is in a state of prayer.", source: "Rumi" },
+    { text: "The prayer of the heart is wordless. It is the pulse of love.", source: "Rumi" },
+    { text: "The pulse of love beats in every living thing. Listen to its rhythm.", source: "Rumi" },
+    { text: "The rhythm of the universe is the heartbeat of the Beloved. Move with it.", source: "Rumi" },
+    { text: "Move with the rhythm of love and you will never be out of step.", source: "Rumi" },
+    { text: "The dance of love has no steps. It is pure movement.", source: "Rumi" },
+    { text: "Pure movement toward the Beloved is the only dance that matters.", source: "Rumi" },
+    { text: "The whirling of the dervish is the turning of the soul around its Beloved.", source: "Rumi" },
+    { text: "Turn, turn, like the planets around the sun of love. Lose yourself in the orbit.", source: "Rumi" },
+    { text: "The orbit of the soul around God is eternal. Join the revolution.", source: "Rumi" },
+    { text: "The revolution of love never ends. It is the perpetual motion of the heart.", source: "Rumi" },
+    { text: "The perpetual motion of the heart toward God is the meaning of existence.", source: "Rumi" },
+    { text: "The meaning of life is not to be found in books. It is found in the heart that breaks open.", source: "Rumi" },
+    { text: "The heart that breaks open becomes a fountain of living water.", source: "Rumi" },
+    { text: "The fountain of living water flows from the broken heart. Drink deeply.", source: "Rumi" },
+    { text: "The stream of life flows through the broken places. Do not fear your cracks.", source: "Rumi" },
+    { text: "The cracks in the heart are the openings through which the light enters.", source: "Rumi" },
+    { text: "The light of the Beloved enters through the cracks in the armor of the ego.", source: "Rumi" },
+    { text: "The armor of the ego must be shed before the heart can be pierced by love.", source: "Rumi" },
+    { text: "The arrow of love pierces the armor of the ego and opens the heart.", source: "Rumi" },
+    { text: "The opened heart is the gateway to the infinite.", source: "Rumi" },
+    { text: "The infinite cannot be contained in the finite mind. It can only be experienced in the open heart.", source: "Rumi" },
+    { text: "The open heart is the door to the infinite. Knock and it shall be opened.", source: "Rumi" },
+    { text: "Knock on the door of the heart. The Beloved is waiting inside.", source: "Rumi" },
+    { text: "The Beloved is closer to you than your own jugular vein. Why do you search far away?", source: "Rumi" },
+    { text: "The nearness of the Beloved is closer than your breath. Can you feel it?", source: "Rumi" },
+    { text: "Feel the presence of the Beloved in every breath. Each breath is a gift.", source: "Rumi" },
+    { text: "Each breath is a thread in the tapestry of life. Weave it with love.", source: "Rumi" },
+    { text: "The tapestry of life is woven from the threads of our choices. Choose love.", source: "Rumi" },
+    { text: "Choose love in every moment, and every moment becomes eternal.", source: "Rumi" },
+    { text: "The eternal moment is now. The Beloved is present in this breath.", source: "Rumi" },
+    { text: "This breath is the meeting place of the eternal and the temporal. Honor it.", source: "Rumi" },
+    { text: "Honor each moment as a gift from the Beloved. None of it is ordinary.", source: "Rumi" },
+    { text: "The ordinary is a veil over the extraordinary. Lift it with wonder.", source: "Rumi" },
+    { text: "Wonder is the beginning of wisdom. The heart that wonders is the heart that seeks.", source: "Rumi" },
+    { text: "The seeking heart is guided by the Beloved. The path appears under your feet.", source: "Rumi" },
+    { text: "The path appears when you walk it. Trust the steps.", source: "Rumi" },
+    { text: "Trust is the bridge between fear and love. Cross it.", source: "Rumi" },
+    { text: "The bridge of trust spans the chasm of fear. One step at a time.", source: "Rumi" },
+    { text: "Each step of trust brings you closer to the Beloved.", source: "Rumi" },
+    { text: "The closer you come to the Beloved, the more you realize you have always been there.", source: "Rumi" },
+    { text: "You have never been separate from the Beloved. Separation is an illusion.", source: "Rumi" },
+    { text: "The illusion of separation is the dream of the ego. Wake up.", source: "Rumi" },
+    { text: "Wake up from the dream of separation. You are one with the Beloved.", source: "Rumi" },
+    { text: "Oneness is not a concept to be understood. It is a reality to be realized.", source: "Rumi" },
+    { text: "Realize the oneness of existence and you will never feel alone again.", source: "Rumi" },
+    { text: "Aloneness is the feeling of separation. Unity is the truth of being.", source: "Rumi" },
+    { text: "The truth of being is love. Everything else is commentary.", source: "Rumi" },
+    { text: "The commentary on love is endless. But the experience of love is beyond words.", source: "Rumi" },
+    { text: "Beyond words, beyond thought, beyond form — there is the Beloved.", source: "Rumi" },
+    { text: "The Beloved is the reality behind all realities. The truth behind all truths.", source: "Rumi" },
+    { text: "Truth is a mirror that reflects the face of the Beloved. Polish it with love.", source: "Rumi" },
+    { text: "Polish the mirror of the heart until the face of the Beloved appears.", source: "Rumi" },
+    { text: "When the mirror of the heart is clean, the Beloved is seen in every reflection.", source: "Rumi" },
+    { text: "Every reflection is a reminder of the source. Remember the source.", source: "Rumi" },
+    { text: "Remember the source from which you came. The separation is only temporary.", source: "Rumi" },
+    { text: "Temporary separation is the pain that leads to eternal reunion.", source: "Rumi" },
+    { text: "The pain of separation is the fire that purifies the soul.", source: "Rumi" },
+    { text: "The soul is purified in the fire of longing. Emerge like gold.", source: "Rumi" },
+    { text: "Gold is tested by fire. The soul is tested by love. Both emerge brighter.", source: "Rumi" },
+    { text: "The fire of love tests the soul as the goldsmith tests gold. Be patient in the fire.", source: "Rumi" },
+    { text: "Patience in the fire of love is the alchemy that transforms lead into gold.", source: "Rumi" },
+    { text: "The alchemy of love turns the lead of the ego into the gold of the spirit.", source: "Rumi" },
+    { text: "The philosopher's stone is love. It transmutes everything it touches.", source: "Rumi" },
+    { text: "Touch everything with love and see how it transforms.", source: "Rumi" },
+    { text: "Transformation is the work of love. Let it work on you.", source: "Rumi" },
+    { text: "Let love work on you like a sculptor on stone. Do not resist the chisel.", source: "Rumi" },
+    { text: "The chisel of love carves the statue of the soul. Let it cut away what is not you.", source: "Rumi" },
+    { text: "What is not you will be cut away by the chisel of love. Do not cling to it.", source: "Rumi" },
+    { text: "Cling to nothing except the Beloved. Everything else will be taken.", source: "Rumi" },
+    { text: "Everything you hold will be taken. Hold only the hand of the Beloved.", source: "Rumi" },
+    { text: "The hand of the Beloved is always reaching for yours. Take it.", source: "Rumi" },
+    { text: "Take the hand of the Beloved and walk through the fire. You will not be burned.", source: "Rumi" },
+    { text: "The fire of the world cannot burn the one who walks with the Beloved.", source: "Rumi" },
+    { text: "Walk with the Beloved through the valley of death. You will find it is a garden.", source: "Rumi" },
+    { text: "The valley of death is a garden of meeting for those who love.", source: "Rumi" },
+    { text: "The garden of meeting is blooming. Enter and be refreshed.", source: "Rumi" },
+    { text: "Refresh your soul in the garden of divine presence. It is always open.", source: "Rumi" },
+    { text: "The garden of the spirit is always in bloom. The seasons of the world do not affect it.", source: "Rumi" },
+    { text: "The seasons of the soul are not the same as the seasons of the earth. Love is eternal spring.", source: "Rumi" },
+    { text: "Eternal spring is the climate of the heart that loves.", source: "Rumi" },
+    { text: "The heart that loves lives in perpetual spring. Winter cannot touch it.", source: "Rumi" },
+    { text: "Winter is but a season. The spring of love always returns.", source: "Rumi" },
+    { text: "The return of spring is the promise of renewal. Trust the cycle.", source: "Rumi" },
+    { text: "The cycle of love is eternal. It ends where it begins — in the heart of the Beloved.", source: "Rumi" },
+    { text: "The beginning and the end are the same point. Love is the circle that contains both.", source: "Rumi" },
+    { text: "The circle of love has no circumference. Its center is everywhere.", source: "Rumi" },
+    { text: "The center of love is the heart of the lover. The circumference is the universe.", source: "Rumi" },
+    { text: "The universe is the body of the Beloved. See it with reverence.", source: "Rumi" },
+    { text: "Reverence for creation is reverence for the creator.", source: "Rumi" },
+    { text: "The creator is known through creation. Read the book of the universe.", source: "Rumi" },
+    { text: "The book of the universe is written in the language of love. Learn to read it.", source: "Rumi" },
+    { text: "Learn to read the language of the heart. It is the only language that matters.", source: "Rumi" },
+    { text: "The language of the heart is universal. Everyone understands love.", source: "Rumi" },
+    { text: "Love is the universal translator. It speaks to every soul in its own language.", source: "Rumi" },
+    { text: "The language of love has no grammar. It is pure communication.", source: "Rumi" },
+    { text: "Pure communication between souls is the essence of love.", source: "Rumi" },
+    { text: "The essence of love is unity. The expression of love is service.", source: "Rumi" },
+    { text: "Service to others is service to God. The guest is the Beloved in disguise.", source: "Rumi" },
+    { text: "The guest is the Beloved. Serve them with joy.", source: "Rumi" },
+    { text: "The joy of service is the joy of love. Serve without expectation.", source: "Rumi" },
+    { text: "Expectation is the death of love. Give without wanting anything in return.", source: "Rumi" },
+    { text: "The return of love is not something you can calculate. It multiplies itself.", source: "Rumi" },
+    { text: "Love multiplies when it is given away. It is the only treasure that grows by spending.", source: "Rumi" },
+    { text: "Spend love freely. The bank of the heart has infinite reserves.", source: "Rumi" },
+    { text: "The reserves of love are infinite. Draw from them without fear of depletion.", source: "Rumi" },
+    { text: "Depletion is not possible when the source is infinite. The Beloved is the source.", source: "Rumi" },
+    { text: "The source of love never runs dry. It is the fountain of eternal life.", source: "Rumi" },
+    { text: "Eternal life is not endless time. It is the quality of living in love.", source: "Rumi" },
+    { text: "Living in love is living in eternity. Time dissolves in the presence of the Beloved.", source: "Rumi" },
+    { text: "The presence of the Beloved dissolves time. Past and future merge into now.", source: "Rumi" },
+    { text: "Now is the only moment that exists. The Beloved is present in it.", source: "Rumi" },
+    { text: "The presence of the Beloved fills every moment. Can you feel it?", source: "Rumi" },
+    { text: "Feel the presence of the Beloved in the warmth of the sun, the cool of the breeze.", source: "Rumi" },
+    { text: "The breeze of mercy blows from the direction of the Beloved. Open your sails.", source: "Rumi" },
+    { text: "The sails of the soul catch the wind of the spirit. Let it carry you home.", source: "Rumi" },
+    { text: "Home is not a place on earth. Home is the presence of the Beloved.", source: "Rumi" },
+    { text: "The presence of the Beloved is home. Wherever you find it, you are home.", source: "Rumi" },
+    { text: "You are always home, for the Beloved is always with you.", source: "Rumi" },
+    { text: "The with-ness of God is the secret of peace. Rest in it.", source: "Rumi" },
+    { text: "Rest in the presence of the Beloved. Let your soul be still.", source: "Rumi" },
+    { text: "The stillness of the soul is the highest prayer. In silence, God speaks.", source: "Rumi" },
+    { text: "In the silence of the heart, the voice of God is heard.", source: "Rumi" },
+    { text: "The voice of God is the music of love. Listen with your whole being.", source: "Rumi" },
+    { text: "Your whole being is an ear when love speaks. Listen.", source: "Rumi" },
+    { text: "Listen to the silence between the words. That is where the Beloved waits.", source: "Rumi" },
+    { text: "Wait for the Beloved in the silence. The arrival is certain.", source: "Rumi" },
+    { text: "Certainty is the gift of faith. Faith is the gift of love.", source: "Rumi" },
+    { text: "Love gives birth to faith, and faith gives birth to certainty.", source: "Rumi" },
+    { text: "Certainty is the fruit of the tree of love. Taste it and be satisfied.", source: "Rumi" },
+    { text: "Satisfaction is not in having, but in being. Be love.", source: "Rumi" },
+    { text: "Being love is the highest achievement. There is nothing beyond it.", source: "Rumi" },
+    { text: "There is nothing beyond love, because love contains everything.", source: "Rumi" },
+    { text: "Everything is contained in love as the ocean contains every drop.", source: "Rumi" },
+    { text: "The drop is the ocean when it surrenders to the ocean. Surrender and become vast.", source: "Rumi" },
+    { text: "Vastness is your true nature. Do not shrink yourself to fit the world.", source: "Rumi" },
+    { text: "The world is small. The soul is vast. Live from the vastness.", source: "Rumi" },
+    { text: "Live from the heart, not from the mind. The heart knows what the mind cannot.", source: "Rumi" },
+    { text: "The mind cannot know what the heart knows. The heart is the seat of divine knowledge.", source: "Rumi" },
+    { text: "Divine knowledge is not information. It is transformation through love.", source: "Rumi" },
+    { text: "Transformation through love is the goal of every soul.", source: "Rumi" },
+    { text: "The goal of the soul is to return to its source. Love is the way.", source: "Rumi" },
+    { text: "The way of love is the way of return. Walk it with joy.", source: "Rumi" },
+    { text: "Joy is the companion of the lover on the path. Let it carry you.", source: "Rumi" },
+    { text: "Let joy carry you like a river carries a leaf to the ocean.", source: "Rumi" },
+    { text: "The ocean of love is vast beyond imagining. Plunge into it.", source: "Rumi" },
+    { text: "Plunge into the ocean of love without hesitation. Do not test the water with your toe.", source: "Rumi" },
+    { text: "Hesitation is the enemy of love. Jump with both feet.", source: "Rumi" },
+    { text: "Jump into the fire of love and be consumed. The ashes are the seed of the new.", source: "Rumi" },
+    { text: "The new creation is born from the ashes of the old. Let the old burn.", source: "Rumi" },
+    { text: "Let the fire of love burn away everything that is not love.", source: "Rumi" },
+    { text: "Everything that is not love is a veil. Burn the veils.", source: "Rumi" },
+    { text: "Burn the veils of separation and see the face of the Beloved.", source: "Rumi" },
+    { text: "The face of the Beloved is the face of your own deepest self. See it.", source: "Rumi" },
+    { text: "See the Beloved in your own heart. The vision is closer than your eyes.", source: "Rumi" },
+    { text: "Your eyes see the world, but the heart sees the truth behind the world.", source: "Rumi" },
+    { text: "The truth behind the world is love. Everything else is appearance.", source: "Rumi" },
+    { text: "Appearance is not reality. Reality is hidden behind the veil of appearance.", source: "Rumi" },
+    { text: "The veil of appearance is woven by desire. Weave it no more.", source: "Rumi" },
+    { text: "Stop weaving the veil of desire and see the reality that has always been there.", source: "Rumi" },
+    { text: "Reality has always been there, waiting for you to open your eyes.", source: "Rumi" },
+    { text: "Open your eyes to the reality of love. It is the only reality.", source: "Rumi" },
+    { text: "The reality of love is the foundation of existence. Build your life on it.", source: "Rumi" },
+    { text: "Build your house on the rock of love, and the floods will not move it.", source: "Rumi" },
+    { text: "The floods of fate cannot move the house built on love.", source: "Rumi" },
+    { text: "Love is the rock that withstands every storm. Stand on it.", source: "Rumi" },
+    { text: "Stand on the rock of love and face the winds of change. They cannot move you.", source: "Rumi" },
+    { text: "You cannot be moved if you are anchored in love. The anchor holds.", source: "Rumi" },
+    { text: "The anchor of love holds in the deepest waters. Trust it.", source: "Rumi" },
+    { text: "Trust the anchor of love even when you cannot see the shore.", source: "Rumi" },
+    { text: "The shore is there, even when the fog of doubt obscures it. Sail on.", source: "Rumi" },
+    { text: "Sail on the sea of love with faith as your compass.", source: "Rumi" },
+    { text: "The compass of the heart always points to the Beloved. Follow it.", source: "Rumi" },
+    { text: "Follow the direction of love and you will never be lost.", source: "Rumi" },
+    { text: "You cannot be lost when love is your guide. The path is clear.", source: "Rumi" },
+    { text: "The path of love is clear to those who walk it. Do not ask for a map.", source: "Rumi" },
+    { text: "The map of love is drawn by walking. Each step reveals the next.", source: "Rumi" },
+    { text: "Each step on the path of love is a step into the unknown. Take it with courage.", source: "Rumi" },
+    { text: "Courage is the companion of love. Fear is the shadow of the ego.", source: "Rumi" },
+    { text: "The shadow of the ego dissolves in the light of love. Step into the light.", source: "Rumi" },
+    { text: "Step into the light of love and see your shadow disappear.", source: "Rumi" },
+    { text: "Your shadow cannot exist where the sun of love shines. Stay in the sun.", source: "Rumi" },
+    { text: "Stay in the light of the Beloved and you will cast no shadow.", source: "Rumi" },
+    { text: "The shadow of the self is the only darkness. Let love dissolve it.", source: "Rumi" },
+    { text: "Dissolve in the light of love as a drop dissolves in the ocean.", source: "Rumi" },
+    { text: "The drop does not cease to exist when it enters the ocean. It becomes the ocean.", source: "Rumi" },
+    { text: "Become the ocean of love. There is no other goal.", source: "Rumi" },
+    { text: "The goal is not to arrive. The goal is to be the journey itself.", source: "Rumi" },
+    { text: "The journey itself is the destination. Every moment is an arrival.", source: "Rumi" },
+    { text: "Every moment is an arrival at the door of the Beloved. Knock.", source: "Rumi" },
+    { text: "Knock with the hand of love and the door opens. It has never been closed.", source: "Rumi" },
+    { text: "The door of mercy is never closed. Enter.", source: "Rumi" },
+    { text: "Enter the door of love and leave everything behind. Nothing else is needed.", source: "Rumi" },
+    { text: "Nothing else is needed except a heart that is open. Open it now.", source: "Rumi" },
+    { text: "Open your heart now. The Beloved is waiting.", source: "Rumi" },
+    { text: "The Beloved is waiting for you to open your eyes. Wake up.", source: "Rumi" },
+    { text: "Wake up to the presence of love that fills the universe. It is everywhere.", source: "Rumi" },
+    { text: "Everywhere you look, the Beloved is looking back. See it.", source: "Rumi" },
+    { text: "See the face of the Beloved in everyone you meet. It is not hard.", source: "Rumi" },
+    { text: "It is not hard to see the Beloved. The only obstacle is the self.", source: "Rumi" },
+    { text: "The self is the only obstacle between you and the Beloved. Remove it.", source: "Rumi" },
+    { text: "Remove the self from the equation and only love remains.", source: "Rumi" },
+    { text: "Only love remains when the self is gone. Let it go.", source: "Rumi" },
+    { text: "Let go of everything you think you are and discover what you truly are.", source: "Rumi" },
+    { text: "What you truly are is love. Nothing more, nothing less.", source: "Rumi" },
+    { text: "Nothing more is needed. You are already what you seek.", source: "Rumi" },
+    { text: "You are already what you seek. The seeking is the finding.", source: "Rumi" },
+    { text: "The sun of Tabriz has risen in my heart. The moon of my soul is full.", source: "Rumi" },
+    { text: "Shams al-Din, you are the sun of my soul. Without you, there is only night.", source: "Rumi" },
+    { text: "The light of Shams has illuminated my darkness. I am no longer who I was.", source: "Rumi" },
+    { text: "I was a candle, but Shams became the sun. Now I burn with a different fire.", source: "Rumi" },
+    { text: "The fire of Shams has consumed me. I am nothing but the smoke of his love.", source: "Rumi" },
+    { text: "The smoke of my longing rises to the sky. Where are you, O sun of Tabriz?", source: "Rumi" },
+    { text: "O Shams, you are the sun that never sets. My heart is your sky.", source: "Rumi" },
+    { text: "The sky of my heart is lit by the sun of your love. No night can darken it.", source: "Rumi" },
+    { text: "The night of separation is long, but the dawn of union is certain.", source: "Rumi" },
+    { text: "The dawn of love breaks in the heart that has waited through the night.", source: "Rumi" },
+    { text: "Wait through the night of separation with patience. The dawn is coming.", source: "Rumi" },
+    { text: "The dawn is coming, and with it the face of the Beloved. Prepare yourself.", source: "Rumi" },
+    { text: "Prepare yourself for the meeting as you would prepare for a wedding.", source: "Rumi" },
+    { text: "The wedding of the soul with the Beloved is the greatest celebration.", source: "Rumi" },
+    { text: "Celebrate the union of the soul with God. Let the music play.", source: "Rumi" },
+    { text: "The music of union is playing in the heart of every lover. Can you hear it?", source: "Rumi" },
+    { text: "Hear the music of the spheres and join the dance of the soul.", source: "Rumi" },
+    { text: "The soul dances when the Beloved is near. Every cell becomes a dancer.", source: "Rumi" },
+    { text: "Every cell of the body dances in the light of love. The atom is a dancer.", source: "Rumi" },
+    { text: "The atom dances in the light of the sun. The soul dances in the light of God.", source: "Rumi" },
+    { text: "The light of God is the dance of existence. Join the dance.", source: "Rumi" },
+    { text: "Join the dance of love and never stop turning. The axis of the soul is the Beloved.", source: "Rumi" },
+    { text: "The Beloved is the axis around which the soul turns. Turn with love.", source: "Rumi" },
+    { text: "Turn with the wheel of the universe and find the center. The center is the heart.", source: "Rumi" },
+    { text: "The center of the universe is the heart of the lover. It holds everything together.", source: "Rumi" },
+    { text: "Everything is held together by the power of love. Nothing exists without it.", source: "Rumi" },
+    { text: "Without love, the universe would collapse. Love is the hidden pillar.", source: "Rumi" },
+    { text: "The hidden pillar of existence is love. It supports everything.", source: "Rumi" },
+    { text: "Everything rests on the foundation of love. Build your life on it.", source: "Rumi" },
+    { text: "Build your life on the foundation of love and it will stand forever.", source: "Rumi" },
+    { text: "Forever is the time of love. It does not end.", source: "Rumi" },
+    { text: "Love does not end. It only changes form.", source: "Rumi" },
+    { text: "The forms of love are many, but the essence is one.", source: "Rumi" },
+    { text: "The essence of love is one, but its expressions are infinite.", source: "Rumi" },
+    { text: "Infinite love expresses itself through finite forms. See the infinite in the finite.", source: "Rumi" },
+    { text: "See the infinite in the face of your beloved. Every beloved is a window to the Beloved.", source: "Rumi" },
+    { text: "Every window opens to the same light. See the light, not the window.", source: "Rumi" },
+    { text: "The window is not the view. Do not confuse the means with the end.", source: "Rumi" },
+    { text: "The end of love is union. There is no other end.", source: "Rumi" },
+    { text: "Union with the Beloved is the only goal worth pursuing.", source: "Rumi" },
+    { text: "Pursue the Beloved with the passion of a lover. Nothing else matters.", source: "Rumi" },
+    { text: "Nothing else matters except the Beloved. Everything else is a distraction.", source: "Rumi" },
+    { text: "Distraction is the tool of the ego. Stay focused on love.", source: "Rumi" },
+    { text: "Focus on love and the world falls into place.", source: "Rumi" },
+    { text: "The world falls into place when love is at the center.", source: "Rumi" },
+    { text: "The center holds when love is the anchor. Nothing can shake it.", source: "Rumi" },
+    { text: "Nothing can shake the heart that is anchored in love.", source: "Rumi" },
+    { text: "Anchored in love, the soul is safe in every storm.", source: "Rumi" },
+    { text: "The storms of life cannot reach the depth where love resides.", source: "Rumi" },
+    { text: "Love resides in the depth of the soul. Go deep.", source: "Rumi" },
+    { text: "Go deep into the ocean of your soul. The pearl of love is there.", source: "Rumi" },
+    { text: "The pearl of love is formed through pain. The oyster of the heart is wounded.", source: "Rumi" },
+    { text: "The wound of love is the beginning of wisdom. The oyster knows.", source: "Rumi" },
+    { text: "The oyster knows that the grain of sand becomes a pearl. Trust the irritation.", source: "Rumi" },
+    { text: "Trust the irritation that becomes the pearl. The process is painful but precious.", source: "Rumi" },
+    { text: "Precious is the pearl that forms in the oyster of the heart. Guard it.", source: "Rumi" },
+    { text: "Guard the pearl of your heart with the vigilance of love.", source: "Rumi" },
+    { text: "The vigilance of love is not suspicion. It is attention.", source: "Rumi" },
+    { text: "Attention is the rarest gift. Give it to the Beloved.", source: "Rumi" },
+    { text: "Give your attention to the Beloved and receive the treasure of the heart.", source: "Rumi" },
+    { text: "The treasure of the heart is hidden in plain sight. Look within.", source: "Rumi" },
+    { text: "Within you is the treasure of the universe. Dig deep.", source: "Rumi" },
+    { text: "Dig deep into the mine of your soul. The gems are waiting.", source: "Rumi" },
+    { text: "The gems of the soul are polished by the friction of life.", source: "Rumi" },
+    { text: "The friction of life polishes the soul. Be grateful for the rub.", source: "Rumi" },
+    { text: "The rub of difficulty is the polish of the soul. Do not avoid it.", source: "Rumi" },
+    { text: "Do not avoid the difficulty that polishes you. It is the gift of the Beloved.", source: "Rumi" },
+    { text: "The gift of the Beloved comes in strange packages. Open them all.", source: "Rumi" },
+    { text: "Open every gift that life brings. Each one contains a message from the Beloved.", source: "Rumi" },
+    { text: "The message of the Beloved is written in the language of experience. Read it.", source: "Rumi" },
+    { text: "Read the book of your life with the eyes of love. It is a sacred text.", source: "Rumi" },
+    { text: "The sacred text of your life is written by the hand of the Beloved.", source: "Rumi" },
+    { text: "The hand of the Beloved guides the pen of fate. Trust what is written.", source: "Rumi" },
+    { text: "Trust the writing on the page of your life. It is a letter from God.", source: "Rumi" },
+    { text: "The letter from God is your life. Read it with the heart.", source: "Rumi" },
+    { text: "The heart knows how to read what the mind cannot understand.", source: "Rumi" },
+    { text: "The mind cannot understand the mysteries of the heart. Surrender to them.", source: "Rumi" },
+    { text: "Surrender to the mystery of love. It is the most rational thing you can do.", source: "Rumi" },
+    { text: "The rationality of love is beyond the logic of the mind.", source: "Rumi" },
+    { text: "The logic of the mind is a boat on the ocean of love. The boat is useful but limited.", source: "Rumi" },
+    { text: "Limited is the mind that tries to contain the ocean. Let go of the shore.", source: "Rumi" },
+    { text: "Let go of the shore of certainty and swim in the ocean of love.", source: "Rumi" },
+    { text: "The ocean of love has no shore. Swim without fear.", source: "Rumi" },
+    { text: "Swim without fear in the ocean of divine love. You cannot drown.", source: "Rumi" },
+    { text: "You cannot drown in the ocean of love because you are the ocean.", source: "Rumi" },
+    { text: "You are the ocean of love, not a drop in it. Realize your vastness.", source: "Rumi" },
+    { text: "Realize the vastness of your true nature. You are infinite.", source: "Rumi" },
+    { text: "Infinite is the soul that knows itself in God. Finite is everything else.", source: "Rumi" },
+    { text: "Everything else passes, but the soul in God remains forever.", source: "Rumi" },
+    { text: "Forever is not a long time. It is the quality of being outside time.", source: "Rumi" },
+    { text: "Outside time, in the presence of the Beloved, is the only reality.", source: "Rumi" },
+    { text: "Reality is the presence of the Beloved. Everything else is a dream.", source: "Rumi" },
+    { text: "The dream of the world fades when you wake to the reality of love.", source: "Rumi" },
+    { text: "Wake from the dream of separation. You are one with the Beloved.", source: "Rumi" },
+    { text: "One with the Beloved, you are everything. Separate, you are nothing.", source: "Rumi" },
+    { text: "Nothing is the beginning of everything. Become nothing.", source: "Rumi" },
+    { text: "Become nothing in the hands of the Beloved. The potter knows what to make.", source: "Rumi" },
+    { text: "The potter of love shapes the clay of the soul. Be pliable.", source: "Rumi" },
+    { text: "Pliable is the heart that lets itself be shaped. Resistant is the heart that breaks.", source: "Rumi" },
+    { text: "The heart that resists breaks. The heart that surrenders becomes a vessel.", source: "Rumi" },
+    { text: "A vessel for the wine of divine love. Let yourself be filled.", source: "Rumi" },
+    { text: "Be filled with the wine of the spirit. Intoxication of the soul is the goal.", source: "Rumi" },
+    { text: "The goal of the soul is to be drunk with the wine of divine love.", source: "Rumi" },
+    { text: "Drunk with the wine of love, you see clearly for the first time.", source: "Rumi" },
+    { text: "For the first time, you see as the Beloved sees. The vision is overwhelming.", source: "Rumi" },
+    { text: "Overwhelming is the vision of the Beloved. It cannot be contained.", source: "Rumi" },
+    { text: "It cannot be contained in words. It must be experienced.", source: "Rumi" },
+    { text: "Experience the presence of the Beloved in the silence of the heart.", source: "Rumi" },
+    { text: "The silence of the heart is the sanctuary of the soul. Enter it.", source: "Rumi" },
+    { text: "Enter the sanctuary of silence and meet the Beloved face to face.", source: "Rumi" },
+    { text: "Face to face with the Beloved, you recognize yourself for the first time.", source: "Rumi" },
+    { text: "For the first time, you know who you are. You are love.", source: "Rumi" },
+    { text: "You are love itself, seeking itself through the forms of the world.", source: "Rumi" },
+    { text: "The forms of the world are the mirrors in which love sees itself.", source: "Rumi" },
+    { text: "Love sees itself in every reflection. The Beloved is the mirror and the face.", source: "Rumi" },
+    { text: "The mirror and the face are one. The seer and the seen are one.", source: "Rumi" },
+    { text: "One is the number of love. All multiplicity is a dream.", source: "Rumi" },
+    { text: "The dream of multiplicity fades in the light of unity. Awake to oneness.", source: "Rumi" },
+    { text: "Awake to the oneness of all existence. The Beloved is all there is.", source: "Rumi" },
+    { text: "All there is, is the Beloved. Everything else is a name for a wave on the ocean.", source: "Rumi" },
+    { text: "The ocean of love has many waves, but it is one ocean.", source: "Rumi" },
+    { text: "One ocean, one love, one Beloved. The names change, but the reality is one.", source: "Rumi" },
+    { text: "Today, like every other day, we wake up empty and frightened. Don't open the door to the study and begin reading. Take down a musical instrument.", source: "Rumi" },
+    { text: "Let the beauty we love be what we do. There are hundreds of ways to kneel and kiss the ground.", source: "Rumi" },
+    { text: "The breeze at dawn has secrets to tell you. Don't go back to sleep.", source: "Rumi" },
+    { text: "The soul has been given its own ears to hear things the mind does not understand.", source: "Rumi" },
+    { text: "I wish I could show you, when you are lonely or in darkness, the astonishing light of your own being.", source: "Rumi" },
+    { text: "The minute I heard my first love story, I started looking for you, not knowing how blind that was.", source: "Rumi" },
+    { text: "Lovers don't finally meet somewhere. They're in each other all along.", source: "Rumi" },
+    { text: "We are the mirror as well as the face in it. We are the pain of love and the love that cures.", source: "Rumi" },
+    { text: "We are the sweetness of water and the glass that holds it. We are the thirst and the drink.", source: "Rumi" },
+    { text: "We are the night and the day, the moon and the stars. We are everything and nothing.", source: "Rumi" },
+    { text: "I have been a seeker and I still am, but I stopped asking the books and the stars. I started listening to the teaching of my soul.", source: "Rumi" },
+    { text: "Don't be satisfied with stories, how things have gone with others. Unfold your own myth.", source: "Rumi" },
+    { text: "Let yourself be drawn by the strange pull of what you really love. It will not lead you astray.", source: "Rumi" },
+    { text: "What you seek is seeking you.", source: "Rumi" },
+    { text: "The clear bead at the center changes everything. There are no edges.", source: "Rumi" },
+    { text: "Don't grieve. Anything you lose comes round in another form.", source: "Rumi" },
+    { text: "When you do things from your soul, you feel a river moving in you, a joy.", source: "Rumi" },
+    { text: "They say. But what do they know? I don't care what they say. I only care about the Beloved.", source: "Rumi" },
+    { text: "The way of love is not a subtle argument. The door there is devastation.", source: "Rumi" },
+    { text: "Keep walking, though there's no place to get to. Don't try to see through the distances.", source: "Rumi" },
+    { text: "There is no end to the journey. The end is the beginning.", source: "Rumi" },
+    { text: "The prophet said, 'Do not belittle any sin.' But I say, 'Do not belittle any mercy.'", source: "Rumi" },
+    { text: "If you are looking for a friend, God is enough. If you are looking for a companion, the Quran is enough. If you are looking for wealth, contentment is enough. If you are looking for work, worship is enough.", source: "Rumi" },
+    { text: "The closer you come to God, the more you see your own weakness.", source: "Rumi" },
+    { text: "The saint is not one who performs miracles. The saint is one who has become nothing.", source: "Rumi" },
+    { text: "Become nothing and you will be everything. This is the paradox of the path.", source: "Rumi" },
+    { text: "The path of the mystic is the path of dying before death. Die to yourself and live in God.", source: "Rumi" },
+    { text: "Live in God and you will never die. The death of the body is not the end.", source: "Rumi" },
+    { text: "The end is not the end. It is the beginning of the real life.", source: "Rumi" },
+    { text: "The real life is hidden behind the veil of this life. Death removes the veil.", source: "Rumi" },
+    { text: "Remove the veil of the ego in this life and see the real life now.", source: "Rumi" },
+    { text: "Now is the time to see. Why wait for death? Die before you die.", source: "Rumi" },
+    { text: "Die before you die and enter the garden of eternal life.", source: "Rumi" },
+    { text: "Eternal life is not tomorrow. It is now, if you have the eyes to see.", source: "Rumi" },
+    { text: "See with the eye of the heart and you will see eternity in every moment.", source: "Rumi" },
+    { text: "Every moment is a window into eternity. Open it.", source: "Rumi" },
+    { text: "Open the window of the heart and let the air of eternity in.", source: "Rumi" },
+    { text: "The air of eternity is the breath of the Beloved. Breathe it in.", source: "Rumi" },
+    { text: "Breathe in the presence of the Beloved with every breath.", source: "Rumi" },
+    { text: "Every breath is a gift. Do not waste it on forgetfulness.", source: "Rumi" },
+    { text: "Forgetfulness is the veil of the soul. Remember the Beloved in every breath.", source: "Rumi" },
+    { text: "Remember the Beloved and you will never be alone.", source: "Rumi" },
+    { text: "Alone is the one who has forgotten God. The one who remembers is never alone.", source: "Rumi" },
+    { text: "Never alone is the one who has found the Beloved within.", source: "Rumi" },
+    { text: "Within you is the Beloved. Why do you search outside?", source: "Rumi" },
+    { text: "Outside is the world of forms. Inside is the world of meaning.", source: "Rumi" },
+    { text: "Meaning is hidden within form as fire is hidden within flint. Strike the stone of the heart.", source: "Rumi" },
+    { text: "Strike the stone of the heart with the steel of love and the fire of the spirit appears.", source: "Rumi" },
+    { text: "The fire of the spirit illuminates the darkness of the world. Be that light.", source: "Rumi" },
+    { text: "Be the light that illuminates the darkness. The world needs your light.", source: "Rumi" },
+    { text: "Your light is the light of the Beloved shining through you. Let it shine.", source: "Rumi" },
+    { text: "Let your light shine before others, not for your glory, but for the glory of the Beloved.", source: "Rumi" },
+    { text: "The one who is guided by love is guided by God. The one who is guided by intellect is guided by himself.", source: "Shams Tabrizi" },
+    { text: "Love is not a doctrine. It is the fire that burns all doctrines.", source: "Shams Tabrizi" },
+    { text: "Do not limit God to your understanding. God is beyond all understanding.", source: "Shams Tabrizi" },
+    { text: "The heart that has not been broken cannot know God. The whole heart knows the whole God.", source: "Shams Tabrizi" },
+    { text: "You can study God through everything and everyone, but if you want to know where God lives, look in the tavern.", source: "Shams Tabrizi" },
+    { text: "The tavern of love is where the heart is broken open. Go there.", source: "Shams Tabrizi" },
+    { text: "The broken heart is the gateway to the divine. Do not fear the breaking.", source: "Shams Tabrizi" },
+    { text: "The breaking of the heart is the beginning of healing. Let it break.", source: "Shams Tabrizi" },
+    { text: "Let your heart break open like the dawn. The light will enter through the cracks.", source: "Shams Tabrizi" },
+    { text: "The cracks in the heart are the windows of the soul. Let the light in.", source: "Shams Tabrizi" },
+    { text: "Let the light of God flood your broken heart. It is the only repair.", source: "Shams Tabrizi" },
+    { text: "The repair of the heart is not mending but opening. Open wider.", source: "Shams Tabrizi" },
+    { text: "Open wider than you think possible. The Beloved is vast.", source: "Shams Tabrizi" },
+    { text: "The vastness of the Beloved cannot be contained in a small heart. Expand.", source: "Shams Tabrizi" },
+    { text: "Expand your heart to the size of the universe. It is possible through love.", source: "Shams Tabrizi" },
+    { text: "Through love, the heart becomes as vast as the throne of God.", source: "Shams Tabrizi" },
+    { text: "The throne of God is the heart of the lover. Keep it pure.", source: "Shams Tabrizi" },
+    { text: "Purity of heart is not about avoiding the world. It is about seeing God in everything.", source: "Shams Tabrizi" },
+    { text: "See God in everything and you have seen God truly.", source: "Shams Tabrizi" },
+    { text: "Truly, God is not hidden in heaven. God is hidden in the heart.", source: "Shams Tabrizi" },
+    { text: "The heart is the sanctuary of God. Enter it with reverence.", source: "Shams Tabrizi" },
+    { text: "Reverence is the attitude of the lover before the Beloved. Cultivate it.", source: "Shams Tabrizi" },
+    { text: "Cultivate the garden of your heart with the water of love.", source: "Shams Tabrizi" },
+    { text: "The water of love flows from the spring of the spirit. Drink from it daily.", source: "Shams Tabrizi" },
+    { text: "Daily, drink from the spring of love. It never runs dry.", source: "Shams Tabrizi" },
+    { text: "Never runs dry the spring of the heart that is connected to the ocean of God.", source: "Shams Tabrizi" },
+    { text: "The ocean of God is within you. Dive deep and find the pearls.", source: "Shams Tabrizi" },
+    { text: "The pearls of divine wisdom are found in the depths of the heart.", source: "Shams Tabrizi" },
+    { text: "The depths of the heart are unexplored. Dive with the pearl diver of love.", source: "Shams Tabrizi" },
+    { text: "The pearl diver of love is not afraid of the deep waters. Dive.", source: "Shams Tabrizi" },
+    { text: "Dive into the depths of your own being. The treasure is there.", source: "Shams Tabrizi" },
+    { text: "The treasure of God is hidden in the deepest part of your soul. Dig.", source: "Shams Tabrizi" },
+    { text: "Dig with the shovel of sincere seeking. You will find what you seek.", source: "Shams Tabrizi" },
+    { text: "What you seek is not far. It is closer than your breath.", source: "Shams Tabrizi" },
+    { text: "Closer than your breath is the presence of God. Feel it.", source: "Shams Tabrizi" },
+    { text: "Feel the presence of God in every breath. It is the breath of life.", source: "Shams Tabrizi" },
+    { text: "The breath of life is the breath of God. Honor it with awareness.", source: "Shams Tabrizi" },
+    { text: "Awareness of God in every moment is the highest prayer.", source: "Shams Tabrizi" },
+    { text: "The highest prayer is not words. It is presence.", source: "Shams Tabrizi" },
+    { text: "Presence before the Beloved is the essence of worship.", source: "Shams Tabrizi" },
+    { text: "Worship is not ritual. It is the heart's attention to God.", source: "Shams Tabrizi" },
+    { text: "Attention to God transforms everything. The ordinary becomes sacred.", source: "Shams Tabrizi" },
+    { text: "The sacred is hidden in the ordinary. See it with the eye of love.", source: "Shams Tabrizi" },
+    { text: "The eye of love sees what the ordinary eye cannot. Develop it.", source: "Shams Tabrizi" },
+    { text: "Develop the eye of the heart through constant remembrance.", source: "Shams Tabrizi" },
+    { text: "Remembrance of God polishes the mirror of the heart.", source: "Shams Tabrizi" },
+    { text: "The mirror of the heart reflects the face of the Beloved when it is polished.", source: "Shams Tabrizi" },
+    { text: "Polish the mirror of your heart with the dust of love.", source: "Shams Tabrizi" },
+    { text: "The dust of love is the humility of the lover. Be humble.", source: "Shams Tabrizi" },
+    { text: "Humility is the garment of the lover. Wear it with grace.", source: "Shams Tabrizi" },
+    { text: "Grace is the gift of the Beloved to the humble heart.", source: "Shams Tabrizi" },
+    { text: "The humble heart is the vessel of grace. Empty yourself.", source: "Shams Tabrizi" },
+    { text: "Empty yourself of pride and be filled with the presence of God.", source: "Shams Tabrizi" },
+    { text: "The presence of God fills the empty heart. Become empty.", source: "Shams Tabrizi" },
+    { text: "Empty is the heart that has let go of everything. It is full of God.", source: "Shams Tabrizi" },
+    { text: "Full of God is the heart that contains nothing else.", source: "Shams Tabrizi" },
+    { text: "Nothing else matters when God is everything. Make God your everything.", source: "Shams Tabrizi" },
+    { text: "Your everything is nothing compared to God. Give everything for the One.", source: "Shams Tabrizi" },
+    { text: "The One is worthy of everything you have. Give it all.", source: "Shams Tabrizi" },
+    { text: "All you have is a gift from the One. Return it with interest.", source: "Shams Tabrizi" },
+    { text: "Interest on the gift of life is love. Pay it generously.", source: "Shams Tabrizi" },
+    { text: "Generously give your love to all beings. God is in every face.", source: "Shams Tabrizi" },
+    { text: "Every face is a mask of the divine. Look behind the mask.", source: "Shams Tabrizi" },
+    { text: "Behind the mask of the world is the face of the Beloved. See it.", source: "Shams Tabrizi" },
+    { text: "See the face of the Beloved in every moment. It is a constant revelation.", source: "Shams Tabrizi" },
+    { text: "Revelation is not a book. It is the unveiling of the heart.", source: "Shams Tabrizi" },
+    { text: "The unveiling of the heart is the purpose of life. Let it happen.", source: "Shams Tabrizi" },
+    { text: "Let the veils fall from your eyes. See the reality of love.", source: "Shams Tabrizi" },
+    { text: "The reality of love is the only reality. Everything else is appearance.", source: "Shams Tabrizi" },
+    { text: "Appearance changes, but reality remains. Hold to the reality.", source: "Shams Tabrizi" },
+    { text: "Hold to the reality of love in the midst of changing appearances.", source: "Shams Tabrizi" },
+    { text: "Changing appearances are the dance of the Beloved. Enjoy the show.", source: "Shams Tabrizi" },
+    { text: "The show of existence is a theater of love. You are both actor and audience.", source: "Shams Tabrizi" },
+    { text: "Actor and audience are one in the theater of divine love.", source: "Shams Tabrizi" },
+    { text: "Divine love is the playwright, the director, and the stage. Surrender to the play.", source: "Shams Tabrizi" },
+    { text: "Surrender to the role the Beloved has given you. Play it with passion.", source: "Shams Tabrizi" },
+    { text: "Passion is the fuel of the spiritual path. Burn with it.", source: "Shams Tabrizi" },
+    { text: "Burn with the fire of divine love. It is the only fire that does not consume.", source: "Shams Tabrizi" },
+    { text: "It does not consume you. It transforms you into light.", source: "Shams Tabrizi" },
+    { text: "Light is what you are at your core. Let it shine through.", source: "Shams Tabrizi" },
+    { text: "Shine through the darkness of the world. You are a lamp of divine light.", source: "Shams Tabrizi" },
+    { text: "The lamp of the heart is lit by the flame of love. Keep it burning.", source: "Shams Tabrizi" },
+    { text: "Keep the flame of love burning in the lamp of your heart. It lights the way.", source: "Shams Tabrizi" },
+    { text: "The way is lit by the lamps of loving hearts. Be a lamp for others.", source: "Shams Tabrizi" },
+    { text: "For others, be a source of light and warmth. The world is cold without love.", source: "Shams Tabrizi" },
+    { text: "Without love, the world is a frozen wasteland. Melt it with your warmth.", source: "Shams Tabrizi" },
+    { text: "The warmth of your love can melt the coldest heart. Do not withhold it.", source: "Shams Tabrizi" },
+    { text: "Withhold nothing from the Beloved. Give everything.", source: "Shams Tabrizi" },
+    { text: "Everything you have is a loan from the Beloved. Return it gladly.", source: "Shams Tabrizi" },
+    { text: "Gladly return the gift of life to the giver. This is the meaning of death.", source: "Shams Tabrizi" },
+    { text: "Death is the return of the gift. Do not cling to what is borrowed.", source: "Shams Tabrizi" },
+    { text: "Borrowed is the body. The soul is eternal. Do not confuse them.", source: "Shams Tabrizi" },
+    { text: "Confuse not the rider with the horse. The soul rides the body.", source: "Shams Tabrizi" },
+    { text: "The body is the horse of the soul. Ride it well, but do not become the horse.", source: "Shams Tabrizi" },
+    { text: "The horse will die, but the rider lives on. Prepare for the journey.", source: "Shams Tabrizi" },
+    { text: "The journey after death is made easier by the love cultivated in life.", source: "Shams Tabrizi" },
+    { text: "Cultivate love now. It is the provision for the journey ahead.", source: "Shams Tabrizi" },
+    { text: "The journey ahead is long, but love shortens the distance.", source: "Shams Tabrizi" },
+    { text: "Distance does not exist for love. Love is the bridge across all separation.", source: "Shams Tabrizi" },
+    { text: "Separation is an illusion created by the mind. The heart knows only union.", source: "Shams Tabrizi" },
+    { text: "Union with the Beloved is the truth of every moment. Realize it.", source: "Shams Tabrizi" },
+    { text: "Realize the truth of union and be free from the pain of separation.", source: "Shams Tabrizi" },
+    { text: "The pain of separation is the gift that drives you to seek. Be grateful for it.", source: "Shams Tabrizi" },
+    { text: "Grateful is the heart that knows the value of pain. Pain is the teacher.", source: "Shams Tabrizi" },
+    { text: "The teacher of the soul is often pain. Listen to the lesson.", source: "Shams Tabrizi" },
+    { text: "The lesson of pain is the value of love. Do not waste it.", source: "Shams Tabrizi" },
+    { text: "Waste not your pain. Let it transform you.", source: "Shams Tabrizi" },
+    { text: "Transformed by pain, the soul becomes gold. Pure gold.", source: "Shams Tabrizi" },
+    { text: "Pure gold is the soul that has passed through the fire of love.", source: "Shams Tabrizi" },
+    { text: "The fire of love is the refiner's fire. Let it purify you.", source: "Shams Tabrizi" },
+    { text: "Purified by love, you become a mirror for the divine.", source: "Shams Tabrizi" },
+    { text: "The divine sees itself in the mirror of the purified heart. Be that mirror.", source: "Shams Tabrizi" },
+    { text: "Be that mirror for others to see the reflection of God.", source: "Shams Tabrizi" },
+    { text: "The reflection of God is in every face. See it and be seen.", source: "Shams Tabrizi" },
+    { text: "Seen by the eye of love, everyone is beautiful. Look with love.", source: "Shams Tabrizi" },
+    { text: "Look with love and see the beauty that has always been there.", source: "Shams Tabrizi" },
+    { text: "Always there is beauty, hidden by the veil of judgment. Let judgment go.", source: "Shams Tabrizi" },
+    { text: "Let go of judgment and see the world as God sees it. With compassion.", source: "Shams Tabrizi" },
+    { text: "Compassion is the eye of love seeing the suffering of the world. Respond.", source: "Shams Tabrizi" },
+    { text: "Respond to suffering with love. It is the only medicine.", source: "Shams Tabrizi" },
+    { text: "The medicine of love heals all wounds. Apply it generously.", source: "Shams Tabrizi" },
+    { text: "Generously apply the balm of love to every wound you encounter.", source: "Shams Tabrizi" },
+    { text: "Every wound is an opportunity for love to enter. Do not waste it.", source: "Shams Tabrizi" },
+    { text: "Waste not the opportunity to love. It is the only thing that matters.", source: "Shams Tabrizi" },
+    { text: "The only thing that matters in the end is how much you have loved.", source: "Shams Tabrizi" },
+    { text: "Loved deeply, lived fully. There is no other measure of a life.", source: "Shams Tabrizi" },
+    { text: "The measure of a life is the depth of its love. All else is vanity.", source: "Shams Tabrizi" },
+    { text: "Vanity of vanities, all is vanity except love. Love alone remains.", source: "Shams Tabrizi" },
+    { text: "Love alone remains when everything else has passed away.", source: "Shams Tabrizi" },
+    { text: "Passed away is the world and all its treasures. Love is the eternal treasure.", source: "Shams Tabrizi" },
+    { text: "The eternal treasure of love is hidden in the heart. Find it.", source: "Shams Tabrizi" },
+    { text: "Find it before you die, and you will never die. Find it after death, and you live.", source: "Shams Tabrizi" },
+    { text: "Live in love now and taste eternity in this life.", source: "Shams Tabrizi" },
+    { text: "This life is the womb of eternity. Gestate in love.", source: "Shams Tabrizi" },
+    { text: "Love is the gestation of the soul for eternal life. Grow in it.", source: "Shams Tabrizi" },
+    { text: "Grow in love daily. There is no end to its growth.", source: "Shams Tabrizi" },
+    { text: "The growth of love is infinite. You will never reach its limit.", source: "Shams Tabrizi" },
+    { text: "Limitless is the ocean of love. Sail forever.", source: "Shams Tabrizi" },
+    { text: "Sail forever on the sea of love. There is no shore.", source: "Shams Tabrizi" },
+    { text: "No shore, no end, no limit to the Beloved. Rest in the vastness.", source: "Shams Tabrizi" },
+    { text: "Rest in the vastness of divine love. You are held.", source: "Shams Tabrizi" },
+    { text: "Held in the palm of the Beloved, you are safe. Trust.", source: "Shams Tabrizi" },
+    { text: "Trust the hand that holds you. It will not let you fall.", source: "Shams Tabrizi" },
+    { text: "Fall into the arms of the Beloved. The embrace is eternal.", source: "Shams Tabrizi" },
+    { text: "Eternal is the embrace of divine love. You have never left it.", source: "Shams Tabrizi" },
+    { text: "Never left, never separated, never alone. The Beloved is always here.", source: "Shams Tabrizi" },
+    { text: "Here, now, in this moment, the Beloved is present. Feel it.", source: "Shams Tabrizi" },
+    { text: "Feel the pulse of divine love in every heartbeat. It is the rhythm of life.", source: "Shams Tabrizi" },
+    { text: "The rhythm of life is the dance of love. Move with it.", source: "Shams Tabrizi" },
+    { text: "Move with the rhythm of the universe and find your place in the dance.", source: "Shams Tabrizi" },
+    { text: "Your place in the dance of existence is unique. No one else can fill it.", source: "Shams Tabrizi" },
+    { text: "Fill your place in the dance with joy. The Beloved is watching.", source: "Shams Tabrizi" },
+    { text: "Watching with eyes of love, the Beloved delights in your existence.", source: "Shams Tabrizi" },
+    { text: "Your existence is the delight of the Beloved. Do not forget it.", source: "Shams Tabrizi" },
+    { text: "Forget not who you are. You are the beloved of the Beloved.", source: "Shams Tabrizi" },
+    { text: "The beloved of the Beloved is the one who knows their true identity.", source: "Shams Tabrizi" },
+    { text: "Identity is not in the ego but in the soul. Know your soul.", source: "Shams Tabrizi" },
+    { text: "Know your soul and you will know your Lord. This is the highest knowledge.", source: "Shams Tabrizi" },
+    { text: "The highest knowledge is not in books. It is in the heart that has been opened.", source: "Shams Tabrizi" },
+    { text: "Opened by love, the heart receives knowledge directly from the source.", source: "Shams Tabrizi" },
+    { text: "The source of all knowledge is the Beloved. Drink directly.", source: "Shams Tabrizi" },
+    { text: "Directly from the fountain of divine wisdom, drink without a cup.", source: "Shams Tabrizi" },
+    { text: "Without a cup, without hands, without a self — drink the wine of union.", source: "Shams Tabrizi" },
+    { text: "Union is the wine that intoxicates without end. Drink and never thirst again.", source: "Shams Tabrizi" },
+    { text: "Thirst again for the wine of union. It is the thirst that quenches itself.", source: "Shams Tabrizi" },
+    { text: "Itself it quenches, and creates new thirst. This is the mystery of divine love.", source: "Shams Tabrizi" },
+    { text: "Mystery upon mystery is the path of love. Walk it without a map.", source: "Shams Tabrizi" },
+    { text: "Without a map, without a guide except love, walk the path.", source: "Shams Tabrizi" },
+    { text: "The path of love is not marked on any map. It is drawn by the feet of lovers.", source: "Shams Tabrizi" },
+    { text: "Lovers leave traces for those who come after. Follow the traces.", source: "Shams Tabrizi" },
+    { text: "Traces of the beloved's presence are everywhere. The world is a trail of clues.", source: "Shams Tabrizi" },
+    { text: "Clues to the presence of the Beloved are in every atom. Read them.", source: "Shams Tabrizi" },
+    { text: "Read the atom and you will find the universe. Read the heart and you will find God.", source: "Shams Tabrizi" },
+    { text: "Find God in the heart and you have found the key to all mysteries.", source: "Shams Tabrizi" },
+    { text: "All mysteries are unlocked by the key of love. Nothing is hidden from the lover.", source: "Shams Tabrizi" },
+    { text: "Hidden things are revealed to the eye of love. See with love and know everything.", source: "Shams Tabrizi" },
+    { text: "Know everything by knowing the One who knows all. The Beloved is the knower.", source: "Shams Tabrizi" },
+    { text: "The knower and the known are one in the embrace of love. This is unity.", source: "Shams Tabrizi" },
+    { text: "Unity is not a concept. It is the living reality of the lover.", source: "Shams Tabrizi" },
+    { text: "The lover lives in unity while walking in multiplicity. This is the art.", source: "Shams Tabrizi" },
+    { text: "The art of living in the world while belonging to the beyond. Master it.", source: "Shams Tabrizi" },
+    { text: "Master the art of love and you have mastered everything.", source: "Shams Tabrizi" },
+    { text: "Everything else follows from love. It is the first and the last.", source: "Shams Tabrizi" },
+    { text: "The first and the last, the alpha and the omega. Love is the beginning and the end.", source: "Shams Tabrizi" },
+    { text: "The end of all seeking is love. Rest in it.", source: "Shams Tabrizi" },
+    { text: "Rest in love and you rest in God. There is no higher resting place.", source: "Shams Tabrizi" },
+    { text: "No higher place exists than the heart of the lover. It is the throne of the divine.", source: "Shams Tabrizi" },
+    { text: "The divine descends into the heart that is ready. Make yourself ready.", source: "Shams Tabrizi" },
+    { text: "Ready your heart for the descent of divine presence. Clean the house.", source: "Shams Tabrizi" },
+    { text: "Clean the house of your heart with the broom of repentance.", source: "Shams Tabrizi" },
+    { text: "Repentance is not guilt. It is turning back to the Beloved.", source: "Shams Tabrizi" },
+    { text: "Turn back to the Beloved at every moment. The path is always open.", source: "Shams Tabrizi" },
+    { text: "Open is the door of return. You are always welcome.", source: "Shams Tabrizi" },
+    { text: "Welcome is the one who returns, no matter how many times they have left.", source: "Shams Tabrizi" },
+    { text: "Left and returned a thousand times. The Beloved welcomes you each time.", source: "Shams Tabrizi" },
+    { text: "Each time you return, the celebration is greater. The Beloved has been waiting.", source: "Shams Tabrizi" },
+    { text: "Waiting with open arms, the Beloved stands at the door of your heart.", source: "Shams Tabrizi" },
+    { text: "Your heart is the door through which the Beloved enters. Open it.", source: "Shams Tabrizi" },
+    { text: "Open the door and let the Beloved in. The guest has been waiting long enough.", source: "Shams Tabrizi" },
+    { text: "Long enough you have kept the Beloved waiting. Now is the time.", source: "Shams Tabrizi" },
+    { text: "Now is the only time. The Beloved is knocking. Answer.", source: "Shams Tabrizi" },
+    { text: "Answer the knock of the Beloved with the opening of your heart.", source: "Shams Tabrizi" },
+    { text: "The opening of the heart is the beginning of real life.", source: "Shams Tabrizi" },
+    { text: "Real life is life in the presence of the Beloved. Enter now.", source: "Shams Tabrizi" },
+    { text: "Enter the presence of the Beloved and leave behind the world of shadows.", source: "Shams Tabrizi" },
+    { text: "Shadows are the reflections of the real. Turn toward the light.", source: "Shams Tabrizi" },
+    { text: "Turn toward the light of the Beloved and your shadow disappears.", source: "Shams Tabrizi" },
+    { text: "Your shadow disappears in the light of divine presence. You become light.", source: "Shams Tabrizi" },
+    { text: "Light is your true nature. You were never the shadow.", source: "Shams Tabrizi" },
+    { text: "Never the shadow, always the light. Remember who you are.", source: "Shams Tabrizi" },
+    { text: "Who you are is beyond name and form. You are the limitless.", source: "Shams Tabrizi" },
+    { text: "Limitless is the soul that knows its source. Claim your inheritance.", source: "Shams Tabrizi" },
+    { text: "Your inheritance from the Beloved is infinity. Do not settle for less.", source: "Shams Tabrizi" },
+    { text: "Less than everything is not enough for the soul. Seek the All.", source: "Shams Tabrizi" },
+    { text: "Seek the All and you will find it. The Beloved is the All.", source: "Shams Tabrizi" },
+    { text: "The All is present in every part. See the whole in the part.", source: "Shams Tabrizi" },
+    { text: "The part contains the whole, as the seed contains the tree. You contain the universe.", source: "Shams Tabrizi" },
+    { text: "The universe is contained in your heart. Expand to realize it.", source: "Shams Tabrizi" },
+    { text: "Realize your cosmic nature. You are not small. You are vast.", source: "Shams Tabrizi" },
+    { text: "Vast beyond measure is the soul that has found its home in God.", source: "Shams Tabrizi" },
+    { text: "The Beloved is with you in every moment. Can you feel that presence?", source: "Rumi" },
+    { text: "Feel the presence of the Beloved in the stillness between your thoughts.", source: "Rumi" },
+    { text: "Between two thoughts, the Beloved waits. Rest in that space.", source: "Rumi" },
+    { text: "The space between breaths is the gateway to the Beloved. Enter it.", source: "Rumi" },
+    { text: "Enter the space of no-mind and meet the Beloved face to face.", source: "Rumi" },
+    { text: "Face to face with the Beloved, words are unnecessary.", source: "Rumi" },
+    { text: "Unnecessary are words when the heart speaks directly to the heart.", source: "Rumi" },
+    { text: "Heart to heart, the Beloved communicates without sound.", source: "Rumi" },
+    { text: "Without sound, without form, the Beloved is known in the depth of silence.", source: "Rumi" },
+    { text: "The depth of silence is the height of communion. Dive deep.", source: "Rumi" },
+    { text: "Love transforms the ordinary into the extraordinary.", source: "Rumi" },
+    { text: "The extraordinary is hidden in the ordinary. Love reveals it.", source: "Rumi" },
+    { text: "Love reveals what was always there but hidden from the loveless eye.", source: "Rumi" },
+    { text: "The loveless eye sees only the surface. Love sees the depths.", source: "Rumi" },
+    { text: "The depths of the soul are revealed only to the gaze of love.", source: "Rumi" },
+    { text: "Gaze with love upon the world and see it as it truly is.", source: "Rumi" },
+    { text: "Truly, the world is a veil of the Beloved. Love lifts the veil.", source: "Rumi" },
+    { text: "Lift the veil of appearance with the hand of love.", source: "Rumi" },
+    { text: "The hand of love is gentle but it tears through every veil.", source: "Rumi" },
+    { text: "Every veil tears when love touches it. Nothing can hide from love.", source: "Rumi" },
+    { text: "The journey to God is inward, not outward. Travel within.", source: "Rumi" },
+    { text: "Within you are worlds unexplored. Journey inward.", source: "Rumi" },
+    { text: "Inward is the only direction that leads to the Beloved.", source: "Rumi" },
+    { text: "The Beloved dwells in the innermost chamber of your heart. Enter.", source: "Rumi" },
+    { text: "Enter the innermost chamber of the heart and find the Beloved enthroned.", source: "Rumi" },
+    { text: "Enthroned in the heart, the Beloved rules the universe from within you.", source: "Rumi" },
+    { text: "Within you is the center of the universe. Find it and find everything.", source: "Rumi" },
+    { text: "Everything is contained in the heart. The heart contains the Beloved.", source: "Rumi" },
+    { text: "The Beloved contains everything. And the Beloved dwells in you.", source: "Rumi" },
+    { text: "You are the container of the container of the universe. Honor yourself.", source: "Rumi" },
+    { text: "Surrender is the key that opens the door of the Beloved.", source: "Rumi" },
+    { text: "The door of the Beloved opens only to the knock of surrender.", source: "Rumi" },
+    { text: "Surrender your will to the Beloved and find your true will.", source: "Rumi" },
+    { text: "Your true will is the will of the Beloved. Let it be done.", source: "Rumi" },
+    { text: "Let the will of the Beloved flow through you like a river.", source: "Rumi" },
+    { text: "Like a river flowing to the ocean, let your life flow to the Beloved.", source: "Rumi" },
+    { text: "The ocean of the Beloved receives every river. Flow without fear.", source: "Rumi" },
+    { text: "Without fear, without hesitation, flow into the ocean of love.", source: "Rumi" },
+    { text: "The ocean of love is your true home. Return to it.", source: "Rumi" },
+    { text: "Return to the ocean of love and be at peace.", source: "Rumi" },
+    { text: "The heart is the temple of God. Enter it with awe.", source: "Rumi" },
+    { text: "Awe fills the heart that recognizes the presence of the Beloved.", source: "Rumi" },
+    { text: "The presence of the Beloved in the heart is the greatest miracle.", source: "Rumi" },
+    { text: "Miracle upon miracle occurs in the heart that loves.", source: "Rumi" },
+    { text: "The heart that loves is a field of miracles waiting to bloom.", source: "Rumi" },
+    { text: "Bloom in the garden of love. Your petals are the qualities of the Beloved.", source: "Rumi" },
+    { text: "The qualities of the Beloved manifest in the heart that is pure.", source: "Rumi" },
+    { text: "Pure is the heart that has been washed by tears of longing.", source: "Rumi" },
+    { text: "Longing for the Beloved purifies the heart more than any ritual.", source: "Rumi" },
+    { text: "Ritual without love is an empty shell. Fill it with the heart's devotion.", source: "Rumi" },
+    { text: "Die to yourself and be reborn in the Beloved.", source: "Rumi" },
+    { text: "Reborn in love, you live a life that death cannot touch.", source: "Rumi" },
+    { text: "Death cannot touch the one who has died before death.", source: "Rumi" },
+    { text: "Before death comes, die to the ego and live in God.", source: "Rumi" },
+    { text: "Live in God and you will never taste the bitterness of death.", source: "Rumi" },
+    { text: "The bitterness of death becomes sweet for the lover of God.", source: "Rumi" },
+    { text: "Sweet is the death that brings union with the Beloved.", source: "Rumi" },
+    { text: "Union with the Beloved is the goal. Death is the wedding night.", source: "Rumi" },
+    { text: "The wedding night of the soul is the day of death. Celebrate it.", source: "Rumi" },
+    { text: "Celebrate the death that brings eternal life. It is the greatest gift.", source: "Rumi" },
+    { text: "The reed flute sings the song of separation. Listen to its lament.", source: "Rumi" },
+    { text: "Lament is the song of every soul parted from its source.", source: "Rumi" },
+    { text: "The source calls to the soul through every note of creation.", source: "Rumi" },
+    { text: "Creation is the music of the Beloved. Learn to hear its harmony.", source: "Rumi" },
+    { text: "Harmony with the Beloved is the natural state of the soul.", source: "Rumi" },
+    { text: "The soul naturally inclines toward the Beloved like the reed toward its root.", source: "Rumi" },
+    { text: "The root of every soul is in the Beloved. Long for the root.", source: "Rumi" },
+    { text: "Long for the source from which you came. The longing itself is the path.", source: "Rumi" },
+    { text: "The path of longing leads to union. Walk it with patience.", source: "Rumi" },
+    { text: "Patience in longing is the fire that refines the soul.", source: "Rumi" },
+    { text: "All is one. The apparent multiplicity is a dream.", source: "Rumi" },
+    { text: "The dream of separation fades when the sun of unity rises.", source: "Rumi" },
+    { text: "Unity is the truth. Multiplicity is the veil. Lift the veil.", source: "Rumi" },
+    { text: "The veil of multiplicity hides the face of the One. See through it.", source: "Rumi" },
+    { text: "See through the many to the One. Every face is the face of the Beloved.", source: "Rumi" },
+    { text: "The face of the Beloved shines through every atom of creation.", source: "Rumi" },
+    { text: "Every atom proclaims the glory of the One. Listen with the heart.", source: "Rumi" },
+    { text: "The heart hears what the ear cannot — the silent proclamation of unity.", source: "Rumi" },
+    { text: "Unity is not a concept. It is the living reality of every moment.", source: "Rumi" },
+    { text: "Every moment is the moment of unity. Wake up to it.", source: "Rumi" },
+    { text: "Drink the wine of divine love and become intoxicated with the Beloved.", source: "Rumi" },
+    { text: "Intoxicated with God, the lover dances in the street of annihilation.", source: "Rumi" },
+    { text: "Annihilation in God is the goal of every true lover.", source: "Rumi" },
+    { text: "The true lover seeks nothing but the face of the Beloved.", source: "Rumi" },
+    { text: "The face of the Beloved is the wine that intoxicates eternally.", source: "Rumi" },
+    { text: "Eternally drunk on divine love, the lover sees clearly.", source: "Rumi" },
+    { text: "Clearly the lover sees what the sober mind cannot perceive.", source: "Rumi" },
+    { text: "Perception of the heart transcends the limitations of the mind.", source: "Rumi" },
+    { text: "The mind is a servant of the heart. Let it serve love.", source: "Rumi" },
+    { text: "Love is the master. Let the mind be the servant. Serve with joy.", source: "Rumi" },
+    { text: "The true teacher is the one who shows you your own soul.", source: "Rumi" },
+    { text: "Your own soul is the teacher. The outer teacher only points the way.", source: "Rumi" },
+    { text: "The way is within you. The guide helps you see what is already there.", source: "Rumi" },
+    { text: "Already there is the treasure. You only need to dig.", source: "Rumi" },
+    { text: "Dig with the shovel of sincerity and you will strike gold.", source: "Rumi" },
+    { text: "Gold of the spirit is found in the mine of the heart.", source: "Rumi" },
+    { text: "The mine of the heart is inexhaustible. Keep digging.", source: "Rumi" },
+    { text: "Keep seeking and you will find. The promise is certain.", source: "Rumi" },
+    { text: "Certain is the finding for the one who seeks with the whole heart.", source: "Rumi" },
+    { text: "The whole heart seeks, the whole heart finds. There is no other way.", source: "Rumi" },
+    { text: "Knowledge without love is a lamp without oil. It gives no light.", source: "Shams Tabrizi" },
+    { text: "No light comes from knowledge that is not kindled by love.", source: "Shams Tabrizi" },
+    { text: "Kindled by love, knowledge becomes wisdom. Seek wisdom.", source: "Shams Tabrizi" },
+    { text: "Wisdom is the marriage of knowledge and love. Let them wed in your heart.", source: "Shams Tabrizi" },
+    { text: "Your heart is the wedding chamber of knowledge and love. Prepare it.", source: "Shams Tabrizi" },
+    { text: "Prepare the chamber of your heart for the union of wisdom.", source: "Shams Tabrizi" },
+    { text: "Wisdom is born when knowledge is immersed in love.", source: "Shams Tabrizi" },
+    { text: "Immersed in love, knowledge transforms into understanding.", source: "Shams Tabrizi" },
+    { text: "Understanding comes through love, not through intellect alone.", source: "Shams Tabrizi" },
+    { text: "Intellect alone cannot grasp the mysteries of the heart.", source: "Shams Tabrizi" },
+    { text: "The heart is a mirror. Polish it with the remembrance of God.", source: "Shams Tabrizi" },
+    { text: "Remembrance of God removes the rust from the mirror of the heart.", source: "Shams Tabrizi" },
+    { text: "The rust of the heart is forgetfulness. Remove it with remembrance.", source: "Shams Tabrizi" },
+    { text: "Remembrance is the polish that makes the heart reflect the Beloved.", source: "Shams Tabrizi" },
+    { text: "Reflect the Beloved in the mirror of your heart. Become the reflection.", source: "Shams Tabrizi" },
+    { text: "The reflection and the reflected are one in the mirror of love.", source: "Shams Tabrizi" },
+    { text: "Love is the mirror that shows you who you really are.", source: "Shams Tabrizi" },
+    { text: "Who you really are is the Beloved looking at itself through your eyes.", source: "Shams Tabrizi" },
+    { text: "Your eyes are the Beloved's eyes. See with divine vision.", source: "Shams Tabrizi" },
+    { text: "Divine vision reveals the unity beneath all appearance.", source: "Shams Tabrizi" },
+    { text: "Let go of everything you hold and you will hold everything.", source: "Shams Tabrizi" },
+    { text: "Holding nothing, you possess everything. This is the paradox of the path.", source: "Shams Tabrizi" },
+    { text: "The path of love requires the release of all attachments.", source: "Shams Tabrizi" },
+    { text: "Attachments are the chains that bind the soul. Break them with love.", source: "Shams Tabrizi" },
+    { text: "Love breaks every chain and sets the soul free.", source: "Shams Tabrizi" },
+    { text: "Free is the soul that has released attachment to the world.", source: "Shams Tabrizi" },
+    { text: "The world is not the enemy. Attachment to the world is the enemy.", source: "Shams Tabrizi" },
+    { text: "The enemy is within. Conquer it with the weapon of love.", source: "Shams Tabrizi" },
+    { text: "The weapon of love conquers without violence. It transforms.", source: "Shams Tabrizi" },
+    { text: "Transformed by love, the enemy becomes the friend.", source: "Shams Tabrizi" },
+    { text: "The Beloved is present in this moment. Do not miss it.", source: "Shams Tabrizi" },
+    { text: "Miss not the moment of presence. It is all there is.", source: "Shams Tabrizi" },
+    { text: "All there is, is now. The Beloved is the now.", source: "Shams Tabrizi" },
+    { text: "Now is the time of meeting. Yesterday is a memory, tomorrow a dream.", source: "Shams Tabrizi" },
+    { text: "Dream not of yesterday or tomorrow. Be present now.", source: "Shams Tabrizi" },
+    { text: "Be present to the presence of the Beloved in this breath.", source: "Shams Tabrizi" },
+    { text: "This breath contains the whole of existence. Breathe consciously.", source: "Shams Tabrizi" },
+    { text: "Conscious breathing is remembrance of the Beloved.", source: "Shams Tabrizi" },
+    { text: "Remembrance of the Beloved in every breath is the essence of prayer.", source: "Shams Tabrizi" },
+    { text: "Prayer without presence is words without meaning. Be present.", source: "Shams Tabrizi" },
+    { text: "The ego is the veil between you and God. Let it go.", source: "Shams Tabrizi" },
+    { text: "Let the ego dissolve in the ocean of divine love.", source: "Shams Tabrizi" },
+    { text: "Divine love dissolves the ego as the sun dissolves the mist.", source: "Shams Tabrizi" },
+    { text: "The mist of the ego cannot withstand the sun of love.", source: "Shams Tabrizi" },
+    { text: "The sun of love rises in the heart and burns away the fog of self.", source: "Shams Tabrizi" },
+    { text: "The fog of self obscures the vision of the Beloved. Let it clear.", source: "Shams Tabrizi" },
+    { text: "Clear the fog of self with the wind of divine breath.", source: "Shams Tabrizi" },
+    { text: "The wind of the spirit blows through the heart. Open the windows.", source: "Shams Tabrizi" },
+    { text: "Open the windows of your heart and let the wind of God cleanse you.", source: "Shams Tabrizi" },
+    { text: "Cleansed of self, you become a clear channel for divine love.", source: "Shams Tabrizi" },
+    { text: "The Beloved is the ocean. The lover is the wave. The wave returns to the ocean.", source: "Rumi" },
+    { text: "Returning to the ocean, the wave remembers it was never separate.", source: "Rumi" },
+    { text: "Never separate from the Beloved, even when you feel alone.", source: "Rumi" },
+    { text: "Feeling alone is the forgetting of the heart. Remember.", source: "Rumi" },
+    { text: "Remember the Beloved and the loneliness dissolves.", source: "Rumi" },
+    { text: "Dissolves the illusion of separation. Only love remains.", source: "Rumi" },
+    { text: "Love remains when everything else passes away.", source: "Rumi" },
+    { text: "Passes away the world, but love abides forever.", source: "Rumi" },
+    { text: "Forever is the lover with the Beloved. There is no end.", source: "Rumi" },
+    { text: "No end to the journey of love. It continues beyond death.", source: "Rumi" },
+    { text: "Beyond death, love becomes the very air we breathe.", source: "Rumi" },
+    { text: "Breathe the air of the Beloved in the garden of eternity.", source: "Rumi" },
+    { text: "Eternity is the playground of the lover. Play without fear.", source: "Rumi" },
+    { text: "Without fear, the lover dances in the field of the Beloved.", source: "Rumi" },
+    { text: "The field of the Beloved is endless. Run in it.", source: "Rumi" },
+    { text: "Run toward the Beloved with all your speed. The race is won by love.", source: "Rumi" },
+    { text: "Love wins every race because it does not compete. It embraces.", source: "Rumi" },
+    { text: "Embrace the Beloved in every form. The Beloved wears many masks.", source: "Rumi" },
+    { text: "Masks of the Beloved are everywhere. Play the game of recognition.", source: "Rumi" },
+    { text: "Recognition of the Beloved in all forms is the highest wisdom.", source: "Rumi" },
+    { text: "Without love, all learning is a burden. Love makes it light.", source: "Rumi" },
+    { text: "Light is the heart that carries love. Heavy is the heart without it.", source: "Rumi" },
+    { text: "Without love, the soul is a bird without wings. It cannot fly.", source: "Rumi" },
+    { text: "Fly with the wings of love to the nest of the Beloved.", source: "Rumi" },
+    { text: "The nest of the Beloved is your true home. Return to it.", source: "Rumi" },
+    { text: "Return to the Beloved with every step. Let each step be love.", source: "Rumi" },
+    { text: "Each step of love brings you closer to the One who never left.", source: "Rumi" },
+    { text: "The One who never left is waiting for you to notice. Notice now.", source: "Rumi" },
+    { text: "Notice the presence of the Beloved in the warmth of the sun.", source: "Rumi" },
+    { text: "The sun is a sign of the Beloved's constant giving. Give like the sun.", source: "Rumi" },
+    { text: "Give like the sun, without discrimination, without expectation.", source: "Rumi" },
+    { text: "Expectation is the death of generosity. Give freely.", source: "Rumi" },
+    { text: "Freely give your love to all. The supply is infinite.", source: "Rumi" },
+    { text: "Infinite is the source of love within you. Draw from it.", source: "Rumi" },
+    { text: "Draw from the infinite well of love within. It never runs dry.", source: "Rumi" },
+    { text: "Never dry is the well of the heart connected to the ocean of God.", source: "Rumi" },
+    { text: "Connect your heart to the ocean of God and live in abundance.", source: "Rumi" },
+    { text: "Abundance is not having much. It is needing little.", source: "Rumi" },
+    { text: "Needing little, the heart is free. Free to love without condition.", source: "Rumi" },
+    { text: "Without condition, love flows like a river. Be that river.", source: "Rumi" },
+    { text: "The river of love irrigates the world. Let it flow through you.", source: "Rumi" },
+    { text: "Through you, the Beloved loves the world. Be a channel.", source: "Rumi" },
+    { text: "A channel of divine love, clear and open. Remove the blocks.", source: "Rumi" },
+    { text: "The blocks are the fears of the ego. Release them.", source: "Rumi" },
+    { text: "Release the fears that block the flow of love. You are safe.", source: "Rumi" },
+    { text: "Safe in the hands of the Beloved, you have nothing to fear.", source: "Rumi" },
+    { text: "Nothing to fear but fear itself. Love casts out fear.", source: "Rumi" },
+    { text: "Cast out fear with the light of love. It cannot coexist.", source: "Rumi" },
+    { text: "Coexist with the Beloved in every moment. It is your birthright.", source: "Rumi" },
+    { text: "Your birthright is love. Claim it now.", source: "Rumi" },
+    { text: "Claim the inheritance of the soul. It is the kingdom of love.", source: "Rumi" },
+    { text: "The kingdom of love is within you. Enter and possess it.", source: "Rumi" },
+    { text: "Possess nothing but love. Let everything else go.", source: "Rumi" },
+    { text: "Let everything go that is not love. It will only burden you.", source: "Rumi" },
+    { text: "Burden yourself with nothing. Love is light.", source: "Rumi" },
+    { text: "Light is the burden of love. It carries you.", source: "Rumi" },
+    { text: "Carried by love, you float above the world of cares.", source: "Rumi" },
+    { text: "Cares of the world dissolve in the presence of the Beloved.", source: "Rumi" },
+    { text: "The presence of the Beloved is the cure for every care.", source: "Rumi" },
+    { text: "Every care is a call to turn toward the Beloved. Answer the call.", source: "Rumi" },
+    { text: "Answer the call of love with your whole being. Hold nothing back.", source: "Rumi" },
+    { text: "Hold nothing back from the Beloved. Give everything.", source: "Rumi" },
+    { text: "Everything you give to the Beloved returns a hundredfold.", source: "Rumi" },
+    { text: "A hundredfold return is the economy of love. Invest generously.", source: "Rumi" },
+    { text: "Generously invest your heart in the treasury of the Beloved.", source: "Rumi" },
+    { text: "The treasury of the Beloved never diminishes. Draw from it freely.", source: "Rumi" },
+    { text: "Freely you have received. Freely give.", source: "Rumi" },
+    { text: "Give and receive in the endless dance of love.", source: "Rumi" },
+    { text: "The dance of love continues without end. Join it now.", source: "Rumi" },
+    { text: "Join the dance of the universe. The Beloved leads.", source: "Rumi" },
+    { text: "The Beloved leads with a gentle hand. Follow.", source: "Rumi" },
+    { text: "Follow the Beloved through the darkness and into the dawn.", source: "Rumi" },
+    { text: "The dawn of union is breaking. Open your eyes.", source: "Rumi" },
+    { text: "Open your eyes to the light of the Beloved. It is everywhere.", source: "Rumi" },
+    { text: "Everywhere you look, the Beloved is looking back. Smile.", source: "Rumi" },
+    { text: "Smile at the Beloved in every face. The recognition is mutual.", source: "Rumi" },
+    { text: "Mutual recognition is the essence of love. See and be seen.", source: "Rumi" },
+    { text: "Seen by the Beloved, you are known completely. Rest in that knowing.", source: "Rumi" },
+    { text: "Knowing and being known by the Beloved is the greatest intimacy.", source: "Rumi" },
+    { text: "Intimacy with the Beloved is the purpose of existence. Cultivate it.", source: "Rumi" },
+    { text: "Cultivate intimacy with the Beloved through constant remembrance.", source: "Rumi" },
+    { text: "Constant remembrance is the thread that connects you to the Beloved.", source: "Rumi" },
+    { text: "The thread of remembrance is unbreakable. Hold it.", source: "Rumi" },
+    { text: "Hold the thread of remembrance through all the storms of life.", source: "Rumi" },
+    { text: "The storms of life cannot break the thread of love.", source: "Rumi" },
+    { text: "Love is the strongest thread in the fabric of existence.", source: "Rumi" },
+    { text: "The fabric of existence is woven with love. Every thread is love.", source: "Rumi" },
+    { text: "Every thread of your life is a strand of love. Weave it well.", source: "Rumi" },
+    { text: "Weave the tapestry of your life with the thread of divine love.", source: "Rumi" },
+    { text: "Divine love is the gold thread in the tapestry. It makes everything precious.", source: "Rumi" },
+    { text: "Precious is the life woven with the gold thread of love.", source: "Rumi" },
+    { text: "Gold is tested by fire. Love is tested by life. Both emerge brighter.", source: "Rumi" },
+    { text: "Brighter than the sun is the heart polished by love.", source: "Rumi" },
+    { text: "Polished by love, the heart reflects the light of the Beloved.", source: "Rumi" },
+    { text: "The light of the Beloved illuminates the whole world through loving hearts.", source: "Rumi" },
+    { text: "Loving hearts are the lamps of the world. Let your light shine.", source: "Rumi" },
+    { text: "Shine with the light of love and the darkness cannot overcome you.", source: "Rumi" },
+    { text: "Darkness is the absence of love. Fill the world with your light.", source: "Rumi" },
+    { text: "Your light is the light of the Beloved. Do not hide it.", source: "Rumi" },
+    { text: "Hide not your light. The world needs every lamp.", source: "Rumi" },
+    { text: "Every lamp is needed to light the path for those who come after.", source: "Rumi" },
+    { text: "Those who come after will walk by the light you have left behind.", source: "Rumi" },
+    { text: "Leave behind a legacy of love. It is the only lasting legacy.", source: "Rumi" },
+    { text: "Lasting is the legacy of love. All else fades.", source: "Rumi" },
+    { text: "Fades the memory of wealth and power. Love is remembered forever.", source: "Rumi" },
+    { text: "Forever remembered is the one who loved deeply.", source: "Rumi" },
+    { text: "Deeply love, and you live forever in the hearts of others.", source: "Rumi" },
+    { text: "Others are the mirror in which you see the Beloved. Love them.", source: "Rumi" },
+    { text: "Love them as the Beloved loves you. Without condition.", source: "Rumi" },
+    { text: "Without condition, without limit, without end. Love like the Beloved.", source: "Rumi" },
+    { text: "The Beloved loves without limit. Be that love in the world.", source: "Rumi" },
+    { text: "In the world but not of it. Love from the heart of the Beloved.", source: "Rumi" },
+    { text: "The heart of the Beloved beats in your chest. Feel it.", source: "Rumi" },
+    { text: "Feel the heartbeat of the Beloved in the pulse of your own life.", source: "Rumi" },
+    { text: "Your life is the life of the Beloved. Live it fully.", source: "Rumi" },
+    { text: "Fully live each moment as a gift from the Beloved.", source: "Rumi" },
+    { text: "The gift of life is the gift of love. Unwrap it with gratitude.", source: "Rumi" },
+    { text: "Gratitude is the response of the heart to the generosity of the Beloved.", source: "Rumi" },
+    { text: "The generosity of the Beloved is endless. Give thanks for it.", source: "Rumi" },
+    { text: "Give thanks for everything, for everything is from the Beloved.", source: "Rumi" },
+    { text: "From the Beloved comes every breath, every joy, every sorrow.", source: "Rumi" },
+    { text: "Sorrow is also a gift. It opens the heart in ways joy cannot.", source: "Rumi" },
+    { text: "Cannot joy alone open the deepest chambers of the heart. Sorrow helps.", source: "Rumi" },
+    { text: "Helps the soul to grow, the pain of separation from the Beloved.", source: "Rumi" },
+    { text: "Separation is the fire that forges the golden soul.", source: "Rumi" },
+    { text: "The golden soul shines brightest in the dark.", source: "Rumi" },
+    { text: "The heart is a garden. Tend it with the water of love.", source: "Shams Tabrizi" },
+    { text: "Tend the garden of your heart daily. Neglect leads to weeds.", source: "Shams Tabrizi" },
+    { text: "Weeds of negativity grow when love is absent. Remove them daily.", source: "Shams Tabrizi" },
+    { text: "Daily remove the weeds of the ego from the garden of the heart.", source: "Shams Tabrizi" },
+    { text: "The garden of the heart flourishes under the sun of love.", source: "Shams Tabrizi" },
+    { text: "The sun of love shines on every heart equally. Open to its rays.", source: "Shams Tabrizi" },
+    { text: "Open to the rays of divine love and let them warm your soul.", source: "Shams Tabrizi" },
+    { text: "Your soul expands in the warmth of divine love. Let it grow.", source: "Shams Tabrizi" },
+    { text: "Grow beyond the limits of the ego into the vastness of the spirit.", source: "Shams Tabrizi" },
+    { text: "The vastness of the spirit is your true home. Expand into it.", source: "Shams Tabrizi" },
+    { text: "Expand your heart to include all beings. This is divine love.", source: "Shams Tabrizi" },
+    { text: "Divine love excludes no one. Be inclusive in your loving.", source: "Shams Tabrizi" },
+    { text: "Inclusive love is the mark of the mature soul. Cultivate it.", source: "Shams Tabrizi" },
+    { text: "Cultivate the maturity that comes from deep love.", source: "Shams Tabrizi" },
+    { text: "Deep love requires deep honesty with yourself and with God.", source: "Shams Tabrizi" },
+    { text: "Honesty with God is the foundation of spiritual integrity.", source: "Shams Tabrizi" },
+    { text: "Integrity is wholeness. Love makes you whole.", source: "Shams Tabrizi" },
+    { text: "Whole is the heart that has been broken and healed by love.", source: "Shams Tabrizi" },
+    { text: "Healed by love, the heart becomes stronger than before.", source: "Shams Tabrizi" },
+    { text: "Stronger through love, the soul faces life with courage.", source: "Shams Tabrizi" },
+    { text: "Courage is the gift of love. Fear cannot survive in its presence.", source: "Shams Tabrizi" },
+    { text: "Presence of love dissolves fear as light dissolves darkness.", source: "Shams Tabrizi" },
+    { text: "Darkness has no power against light. Fear has no power against love.", source: "Shams Tabrizi" },
+    { text: "Love is the most powerful force in the universe. Trust it.", source: "Shams Tabrizi" },
+    { text: "Trust love to guide you through the unknown.", source: "Shams Tabrizi" },
+    { text: "The unknown is the territory of faith. Love is the compass.", source: "Shams Tabrizi" },
+    { text: "The compass of love points true north. Follow it without hesitation.", source: "Shams Tabrizi" },
+    { text: "Hesitation is the enemy of spiritual progress. Move with love.", source: "Shams Tabrizi" },
+    { text: "Move with the certainty that love will not lead you astray.", source: "Shams Tabrizi" },
+    { text: "Astray you cannot go when love is your guide.", source: "Shams Tabrizi" },
+    { text: "Guide of the soul is love. Surrender to its guidance.", source: "Shams Tabrizi" },
+    { text: "Guidance of love is gentle but firm. It knows the way.", source: "Shams Tabrizi" },
+    { text: "The way of love is the way of the heart. Follow your heart.", source: "Shams Tabrizi" },
+    { text: "Your heart knows the way home. Trust its wisdom.", source: "Shams Tabrizi" },
+    { text: "Wisdom of the heart exceeds the knowledge of the mind.", source: "Shams Tabrizi" },
+    { text: "The mind is a tool. Use it, but do not be ruled by it.", source: "Shams Tabrizi" },
+    { text: "Ruled by the mind, you are limited. Ruled by love, you are infinite.", source: "Shams Tabrizi" },
+    { text: "Infinite is the soul that lives in love.", source: "Shams Tabrizi" },
+    { text: "Live in love as a fish lives in water. It is your element.", source: "Shams Tabrizi" },
+    { text: "Your element is love. Out of it, you cannot breathe.", source: "Shams Tabrizi" },
+    { text: "Breathe the air of love and live. Nothing else sustains the soul.", source: "Shams Tabrizi" },
+    { text: "Sustained by love, the soul lives forever.", source: "Shams Tabrizi" },
+    { text: "Forever is now for the one who loves. Time does not bind them.", source: "Shams Tabrizi" },
+    { text: "Bind yourself not with time. Live in the eternal now.", source: "Shams Tabrizi" },
+    { text: "The eternal now is the moment of meeting with the Beloved.", source: "Shams Tabrizi" },
+    { text: "Meeting with the Beloved is the purpose of every moment.", source: "Shams Tabrizi" },
+    { text: "Every moment is a meeting if you are awake. Stay awake.", source: "Shams Tabrizi" },
+    { text: "Awake and aware, you see the Beloved in everything.", source: "Shams Tabrizi" },
+    { text: "Everything speaks of the Beloved to the listening heart.", source: "Shams Tabrizi" },
+    { text: "Listen to the world with the ear of love. It sings of God.", source: "Shams Tabrizi" },
+    { text: "Sings of God, the whole creation. Join the chorus.", source: "Shams Tabrizi" },
+    { text: "The chorus of creation praises the Beloved. Add your voice.", source: "Shams Tabrizi" },
+    { text: "Your voice is needed in the symphony of praise. Sing.", source: "Shams Tabrizi" },
+    { text: "Sing with the joy of a heart that has found its home.", source: "Shams Tabrizi" },
+    { text: "Home is where the Beloved is. You are always home.", source: "Shams Tabrizi" },
+    { text: "Always home in the heart of the Beloved. Rest there.", source: "Shams Tabrizi" },
+    { text: "Rest in the heart of the Beloved and be at peace.", source: "Shams Tabrizi" },
+    { text: "Peace is the natural state of the soul in love.", source: "Shams Tabrizi" },
+    { text: "In love, the soul finds its rest. All seeking ends.", source: "Shams Tabrizi" },
+    { text: "Ends the search when you find the Beloved within.", source: "Shams Tabrizi" },
+    { text: "Within you is the Beloved. The search is over.", source: "Shams Tabrizi" },
+    { text: "Over is the separation. Union has always been the truth.", source: "Shams Tabrizi" },
+    { text: "The truth of union sets you free from the illusion of separation.", source: "Shams Tabrizi" },
+    { text: "Separation is the illusion that love dispels.", source: "Shams Tabrizi" },
+    { text: "Dispels love every false notion. Only truth remains.", source: "Shams Tabrizi" },
+    { text: "Truth remains when all else falls away. Hold to truth.", source: "Shams Tabrizi" },
+    { text: "Hold to the truth of love. It will never betray you.", source: "Shams Tabrizi" },
+    { text: "Betrayal is impossible for love. It is faithful beyond measure.", source: "Shams Tabrizi" },
+    { text: "Measure not the depth of love. It is bottomless.", source: "Shams Tabrizi" },
+    { text: "Bottomless is the ocean of divine love. Dive without fear.", source: "Shams Tabrizi" },
+    { text: "Without fear, plunge into the depths of the Beloved's love.", source: "Shams Tabrizi" },
+    { text: "Love of the Beloved has no bottom and no shore. Swim freely.", source: "Shams Tabrizi" },
+    { text: "Freely swim in the ocean of love. You are supported.", source: "Shams Tabrizi" },
+    { text: "Supported by the Beloved, you cannot sink. Float in trust.", source: "Shams Tabrizi" },
+    { text: "Trust the water of love to hold you. It is the water of life.", source: "Shams Tabrizi" },
+    { text: "Life is renewed in the water of love. Bathe in it daily.", source: "Shams Tabrizi" },
+    { text: "Daily bathe in the river of divine mercy. It flows through your heart.", source: "Shams Tabrizi" },
+    { text: "Your heart is connected to the river of mercy. Open the channel.", source: "Shams Tabrizi" },
+    { text: "Open the channel of your heart to receive the flow of divine grace.", source: "Shams Tabrizi" },
+    { text: "Grace flows where the heart is open. Keep it open.", source: "Shams Tabrizi" },
+    { text: "Keep your heart open even in pain. The pain is the opening.", source: "Shams Tabrizi" },
+    { text: "The opening of the heart through pain is the gift of the Beloved.", source: "Shams Tabrizi" },
+    { text: "The gift of the Beloved often arrives wrapped in difficulty.", source: "Shams Tabrizi" },
+    { text: "Difficulty is the wrapping. The gift inside is always love.", source: "Shams Tabrizi" },
+    { text: "Always love is the gift, no matter how it is wrapped.", source: "Shams Tabrizi" },
+  ];
+
+  let currentIndex = 0;
+  let isAnimating = false;
+
+  const quoteEl = document.getElementById('quoteText');
+  const attributionEl = document.getElementById('attribution');
+  const sourceLabelEl = document.getElementById('sourceLabel');
+  const counterEl = document.getElementById('counter');
+  const btn = document.getElementById('newQuoteBtn');
+
+  function showQuote(index) {
+    const q = quotes[index];
+    quoteEl.textContent = q.text;
+    attributionEl.innerHTML = '— <span class="name">' + q.source + '</span>';
+    sourceLabelEl.textContent = q.source;
+    counterEl.textContent = (index + 1) + ' / ' + quotes.length;
+  }
+
+  function transitionTo(index) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    quoteEl.classList.remove('fade-in');
+    quoteEl.classList.add('fade-out');
+    attributionEl.classList.remove('fade-in');
+    attributionEl.classList.add('fade-out');
+
+    setTimeout(() => {
+      showQuote(index);
+      quoteEl.classList.remove('fade-out');
+      attributionEl.classList.remove('fade-out');
+      requestAnimationFrame(() => {
+        quoteEl.classList.add('fade-in');
+        attributionEl.classList.add('fade-in');
+      });
+      isAnimating = false;
+    }, 450);
+  }
+
+  function getRandomIndex() {
+    let idx;
+    do {
+      idx = Math.floor(Math.random() * quotes.length);
+    } while (idx === currentIndex && quotes.length > 1);
+    return idx;
+  }
+
+  btn.addEventListener('click', () => {
+    currentIndex = getRandomIndex();
+    transitionTo(currentIndex);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Space') {
+      e.preventDefault();
+      btn.click();
+    }
+  });
+
+  showQuote(0);
+</script>
+</body>
+</html>
