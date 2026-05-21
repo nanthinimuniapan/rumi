@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Breath of the Beloved — Rumi & Shams Tabrizi</title>
+<title>The Breath of the Beloved — Rumi &amp; Shams Tabrizi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -18,10 +18,30 @@
     --accent-dim: rgba(201, 168, 76, 0.15);
     --accent-glow: rgba(201, 168, 76, 0.08);
     --border: rgba(201, 168, 76, 0.12);
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+
     --font-quote: 'Cormorant Garamond', Georgia, serif;
     --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
     --radius: 16px;
-    --transition: 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    --transition: 250ms ease;
+  }
+
+  .light-mode {
+    --bg: #FAF8F5;
+    --bg-card: rgba(255, 252, 248, 0.92);
+    --text-primary: #2D2A24;
+    --text-muted: #8A8078;
+    --accent: #B8923E;
+    --border: rgba(184, 146, 62, 0.18);
+    --accent-dim: rgba(184, 146, 62, 0.10);
+    --accent-glow: rgba(184, 146, 62, 0.06);
   }
 
   html, body { height: 100%; }
@@ -37,6 +57,7 @@
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background 250ms ease;
   }
 
   .aurora {
@@ -88,13 +109,18 @@
     100% { transform: translate(-50px, -20px) scale(1) rotate(360deg); }
   }
 
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.008); }
+  }
+
   .container {
     position: relative;
     z-index: 1;
     width: 100%;
     max-width: 700px;
-    padding: 2rem;
-    margin: 1rem;
+    padding: var(--space-xl);
+    margin: var(--space-md);
   }
 
   .card {
@@ -103,10 +129,11 @@
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 3.5rem 3rem;
+    padding: var(--space-3xl) var(--space-xl);
     text-align: center;
     position: relative;
-    transition: border-color 0.4s ease;
+    transition: border-color 250ms ease;
+    animation: breathe 8s ease-in-out infinite;
   }
 
   .card::before {
@@ -117,6 +144,22 @@
     background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), transparent 40%, transparent 60%, rgba(201, 168, 76, 0.05));
     pointer-events: none;
     z-index: -1;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: var(--radius);
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(201, 168, 76, 0.06), transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 250ms ease;
+  }
+
+  .card:hover::after {
+    opacity: 1;
   }
 
   .source-label {
@@ -130,7 +173,7 @@
     background: var(--accent-dim);
     padding: 0.35rem 1rem;
     border-radius: 100px;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-xl);
     transition: var(--transition);
   }
 
@@ -141,6 +184,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: var(--space-lg);
   }
 
   .quote-mark {
@@ -162,9 +206,12 @@
     line-height: 1.55;
     font-weight: 400;
     color: var(--text-primary);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 250ms ease, transform 250ms ease;
     position: relative;
     z-index: 1;
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .quote-text em {
@@ -183,13 +230,13 @@
   }
 
   .attribution {
-    margin-top: 1.75rem;
+    margin-top: var(--space-sm);
     font-family: var(--font-ui);
     font-size: 0.85rem;
     font-weight: 400;
     color: var(--text-muted);
     letter-spacing: 0.04em;
-    transition: opacity 0.5s ease 0.1s;
+    transition: opacity 250ms ease 0.1s;
   }
 
   .attribution .name {
@@ -211,7 +258,7 @@
     width: 2rem;
     height: 1px;
     background: var(--border);
-    margin: 2rem auto;
+    margin: var(--space-2xl) auto;
   }
 
   .btn {
@@ -227,10 +274,12 @@
     border-radius: 100px;
     padding: 0.7rem 1.75rem;
     cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 200ms ease;
     outline: none;
     position: relative;
     overflow: hidden;
+    min-height: 44px;
+    min-width: 44px;
   }
 
   .btn::before {
@@ -241,7 +290,7 @@
     border-radius: 100px;
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 250ms ease;
   }
 
   .btn:hover::before { transform: scaleX(1); transform-origin: left; }
@@ -267,7 +316,7 @@
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 250ms ease;
     position: relative;
     z-index: 1;
   }
@@ -280,32 +329,276 @@
   }
 
   .counter {
-    margin-top: 1.25rem;
+    margin-top: var(--space-lg);
     font-family: var(--font-ui);
     font-size: 0.7rem;
     font-weight: 400;
     color: var(--text-muted);
     letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: var(--space-md);
+    right: var(--space-md);
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: background 250ms ease, border-color 250ms ease, color 250ms ease, transform 250ms ease;
+    outline: none;
+  }
+
+  .theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.05);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: all 250ms ease;
+    outline: none;
+    min-height: 36px;
+  }
+
+  .filter-pill:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .filter-pill.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-color: var(--accent);
+  }
+
+  .filter-pill:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 200ms ease;
+    outline: none;
+    position: relative;
+  }
+
+  .action-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .action-btn:active {
+    transform: scale(0.95);
+  }
+
+  .action-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .action-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .keyboard-hint {
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--text-muted);
     opacity: 0.5;
+    text-align: center;
+    margin-top: var(--space-md);
+    letter-spacing: 0.03em;
+  }
+
+  .email-section {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    max-width: 400px;
+    margin: var(--space-lg) auto 0;
+  }
+
+  .email-input {
+    flex: 1;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.6rem 1.25rem;
+    outline: none;
+    transition: border-color 250ms ease;
+  }
+
+  .email-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+
+  .email-input:focus {
+    border-color: var(--accent);
+  }
+
+  .footer {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    opacity: 0.5;
+    text-align: center;
+    margin-top: var(--space-2xl);
+    letter-spacing: 0.03em;
   }
 
   @media (max-width: 600px) {
-    .container { padding: 1rem; margin: 0.5rem; }
-    .card { padding: 2rem 1.5rem; }
-    .quote-text { font-size: 1.3rem; }
+    .container { padding: var(--space-md); margin: var(--space-xs); }
+    .card { padding: var(--space-xl) var(--space-md); }
+    .quote-text { font-size: 1.25rem; }
     .quote-wrap { min-height: 180px; }
     .quote-mark { font-size: 3rem; top: -0.4rem; left: 0; }
     .source-label { font-size: 0.65rem; }
+    .filter-pill { font-size: 0.75rem; padding: 0.3rem 0.75rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .aurora-blob { animation: none !important; }
-    .quote-text, .attribution { transition: none !important; }
-    .btn, .btn::before, .btn svg { transition: none !important; }
-    .quote-text.fade-out, .attribution.fade-out { opacity: 0; transform: none; }
-    .quote-text.fade-in, .attribution.fade-in { opacity: 1; transform: none; }
+    .aurora-blob,
+    .card {
+      animation: none !important;
+    }
+    .card,
+    .card::after,
+    .quote-text,
+    .attribution,
+    .source-label,
+    .btn,
+    .btn::before,
+    .btn svg,
+    .theme-toggle,
+    .filter-pill,
+    .action-btn,
+    .email-input {
+      transition: none !important;
+    }
+    .card:hover::after {
+      opacity: 0 !important;
+    }
+    .quote-text.fade-out,
+    .attribution.fade-out {
+      opacity: 0;
+      transform: none;
+    }
+    .quote-text.fade-in,
+    .attribution.fade-in {
+      opacity: 1;
+      transform: none;
+    }
+    .btn:hover,
+    .theme-toggle:hover {
+      transform: none !important;
+    }
+    .btn:hover svg {
+      transform: none !important;
+    }
   }
+
+  .site-title {
+    font-family: var(--font-quote);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 600px) {
+    .site-title { font-size: 1.2rem; }
+  }
+
 </style>
+
 </head>
 <body>
 
@@ -315,8 +608,26 @@
   <div class="aurora-blob"></div>
 </div>
 
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light mode">
+  <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+  <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true" style="display:none">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+</button>
+
 <main class="container">
   <div class="card" role="article" aria-label="Rumi and Shams Tabrizi quote">
+    
+    <h1 class="site-title">The Breath of the Beloved</h1>
+    <div class="filter-pills" role="radiogroup" aria-label="Filter by author">
+      <button class="filter-pill active" data-filter="all" role="radio" aria-checked="true" type="button">All</button>
+      <button class="filter-pill" data-filter="Rumi" role="radio" aria-checked="false" type="button">Rumi</button>
+      <button class="filter-pill" data-filter="Shams Tabrizi" role="radio" aria-checked="false" type="button">Shams</button>
+    </div>
+
     <span class="source-label" id="sourceLabel">Rumi</span>
 
     <div class="quote-wrap">
@@ -341,8 +652,41 @@
     </button>
 
     <p class="counter" id="counter" aria-live="polite">1 / 1212</p>
+
+    <div class="action-bar" id="actionBar">
+      <button class="action-btn" id="copyBtn" type="button" aria-label="Copy quote to clipboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        <span class="tooltip" id="copyTooltip">Copied!</span>
+      </button>
+      <button class="action-btn" id="shareBtn" type="button" aria-label="Share this quote">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="keyboard-hint" id="keyboardHint">Press <kbd>Space</kbd> for a new quote</p>
   </div>
 </main>
+
+<section class="email-section" id="emailSection">
+  <p class="email-label">Receive a daily verse in your inbox</p>
+  <form class="email-form" id="emailForm">
+    <input class="email-input" id="emailInput" type="email" placeholder="your@email.com" aria-label="Email for daily quotes" required>
+    <button class="btn email-btn" type="submit">Subscribe</button>
+  </form>
+  <p class="email-success" id="emailSuccess" style="display:none">You're subscribed. Welcome to the path.</p>
+</section>
+
+<footer class="footer" id="footer">
+  <p>1,212 verses from Rumi &amp; Shams Tabrizi &middot; The Breath of the Beloved</p>
+</footer>
+</body>
+
 
 <script>
     const quotes = [
@@ -1562,6 +1906,7 @@
 
   let currentIndex = 0;
   let isAnimating = false;
+  let currentSource = '';
 
   const quoteEl = document.getElementById('quoteText');
   const attributionEl = document.getElementById('attribution');
@@ -1569,12 +1914,145 @@
   const counterEl = document.getElementById('counter');
   const btn = document.getElementById('newQuoteBtn');
 
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const sunIcon = themeToggle.querySelector('.sun-icon');
+  const moonIcon = themeToggle.querySelector('.moon-icon');
+
+  const storedTheme = localStorage.getItem('theme');
+  if (storedTheme === 'light') {
+    document.body.classList.add('light-mode');
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = '';
+  } else if (storedTheme === 'dark') {
+    document.body.classList.remove('light-mode');
+    sunIcon.style.display = '';
+    moonIcon.style.display = 'none';
+  } else {
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      document.body.classList.add('light-mode');
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = '';
+    } else {
+      moonIcon.style.display = 'none';
+    }
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-mode');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    sunIcon.style.display = isLight ? 'none' : '';
+    moonIcon.style.display = isLight ? '' : 'none';
+  });
+
+  // Author Filter
+  const filterBtns = document.querySelectorAll('.filter-pill');
+  let activeFilter = 'all';
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-checked', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-checked', 'true');
+      activeFilter = btn.dataset.filter;
+      currentIndex = getRandomIndex();
+      transitionTo(currentIndex);
+    });
+  });
+
+  function getFilteredQuotes() {
+    if (activeFilter === 'all') return quotes;
+    return quotes.filter(q => q.source === activeFilter);
+  }
+
+  function getRandomIndex() {
+    const filtered = getFilteredQuotes();
+    if (filtered.length === 0) return 0;
+    const randomInFiltered = Math.floor(Math.random() * filtered.length);
+    const actualIndex = quotes.indexOf(filtered[randomInFiltered]);
+    return actualIndex;
+  }
+
+  // Copy to Clipboard
+  const copyBtn = document.getElementById('copyBtn');
+  const copyTooltip = document.getElementById('copyTooltip');
+
+  copyBtn.addEventListener('click', async () => {
+    const text = quoteEl.textContent + '\n\n\u2014 ' + currentSource;
+    try {
+      await navigator.clipboard.writeText(text);
+      copyTooltip.style.opacity = '1';
+      copyTooltip.style.transform = 'translateY(0)';
+      setTimeout(() => {
+        copyTooltip.style.opacity = '0';
+        copyTooltip.style.transform = 'translateY(6px)';
+      }, 2000);
+    } catch {}
+  });
+
+  // Share API
+  const shareBtn = document.getElementById('shareBtn');
+  shareBtn.addEventListener('click', async () => {
+    const text = quoteEl.textContent + '\n\n\u2014 ' + currentSource;
+    if (navigator.share) {
+      try { await navigator.share({ text }); } catch {}
+    } else {
+      copyBtn.click();
+    }
+  });
+
+  // Email Signup (localStorage mock)
+  const emailForm = document.getElementById('emailForm');
+  const emailInput = document.getElementById('emailInput');
+  const emailSuccess = document.getElementById('emailSuccess');
+
+  emailForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (email && email.includes('@')) {
+      localStorage.setItem('dailyQuoteEmail', email);
+      emailForm.style.display = 'none';
+      emailSuccess.style.display = '';
+    }
+  });
+
+  if (localStorage.getItem('dailyQuoteEmail')) {
+    emailForm.style.display = 'none';
+    emailSuccess.style.display = '';
+  }
+
+  // Keyboard Hint visibility
+  const keyboardHint = document.getElementById('keyboardHint');
+  setTimeout(() => { keyboardHint.style.opacity = '1'; }, 3000);
+  setTimeout(() => { keyboardHint.style.opacity = '0'; }, 8000);
+
+  // Glassmorphism mouse-tracking glow on card
+  const card = document.querySelector('.card');
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', x + '%');
+    card.style.setProperty('--mouse-y', y + '%');
+  });
+
   function showQuote(index) {
     const q = quotes[index];
+    currentSource = q.source;
     quoteEl.textContent = q.text;
-    attributionEl.innerHTML = '— <span class="name">' + q.source + '</span>';
+    attributionEl.innerHTML = '\u2014 <span class="name">' + q.source + '</span>';
     sourceLabelEl.textContent = q.source;
-    counterEl.textContent = (index + 1) + ' / ' + quotes.length;
+
+    const filtered = getFilteredQuotes();
+    const idxInFiltered = filtered.indexOf(q);
+    const displayCount = idxInFiltered >= 0 ? idxInFiltered + 1 : index + 1;
+    counterEl.textContent = displayCount + ' / ' + filtered.length;
+
+    copyTooltip.style.opacity = '0';
+    copyTooltip.style.transform = 'translateY(6px)';
   }
 
   function transitionTo(index) {
@@ -1595,15 +2073,7 @@
         attributionEl.classList.add('fade-in');
       });
       isAnimating = false;
-    }, 450);
-  }
-
-  function getRandomIndex() {
-    let idx;
-    do {
-      idx = Math.floor(Math.random() * quotes.length);
-    } while (idx === currentIndex && quotes.length > 1);
-    return idx;
+    }, 200);
   }
 
   btn.addEventListener('click', () => {
@@ -1620,5 +2090,5 @@
 
   showQuote(0);
 </script>
-</body>
+
 </html>
