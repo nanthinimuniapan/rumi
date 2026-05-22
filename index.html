@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Breath of the Beloved — Rumi, Shams Tabrizi, Kahlil Gibran &amp; Rabindranath Tagore</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%230A0A0F' stroke='%23C9A96E' stroke-width='1.5'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='serif' font-size='18' font-weight='bold' fill='%23C9A96E'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -489,37 +490,6 @@
     letter-spacing: 0.03em;
   }
 
-  .email-section {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    max-width: 400px;
-    margin: var(--space-lg) auto 0;
-  }
-
-  .email-input {
-    flex: 1;
-    font-family: var(--font-ui);
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-primary);
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 0.6rem 1.25rem;
-    outline: none;
-    transition: border-color 250ms ease;
-  }
-
-  .email-input::placeholder {
-    color: var(--text-muted);
-    opacity: 0.6;
-  }
-
-  .email-input:focus {
-    border-color: var(--accent);
-  }
-
   .footer {
     font-family: var(--font-ui);
     font-size: 0.7rem;
@@ -556,8 +526,7 @@
     .btn svg,
     .theme-toggle,
     .filter-pill,
-    .action-btn,
-    .email-input {
+    .action-btn {
       transition: none !important;
     }
     .card:hover::after {
@@ -676,7 +645,7 @@
 </main>
 
 <footer class="footer" id="footer">
-  <p>2,273 verses from Rumi, Shams Tabrizi, Kahlil Gibran &amp; Rabindranath Tagore &middot; The Breath of the Beloved</p>
+  <p>2,273 verses from Rumi, Shams Tabrizi, Kahlil Gibran &amp; Rabindranath Tagore · The Breath of the Beloved</p>
 </footer>
 </body>
 
@@ -3057,26 +3026,6 @@
       copyBtn.click();
     }
   });
-
-  // Email Signup (localStorage mock)
-  const emailForm = document.getElementById('emailForm');
-  const emailInput = document.getElementById('emailInput');
-  const emailSuccess = document.getElementById('emailSuccess');
-
-  emailForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = emailInput.value.trim();
-    if (email && email.includes('@')) {
-      localStorage.setItem('dailyQuoteEmail', email);
-      emailForm.style.display = 'none';
-      emailSuccess.style.display = '';
-    }
-  });
-
-  if (localStorage.getItem('dailyQuoteEmail')) {
-    emailForm.style.display = 'none';
-    emailSuccess.style.display = '';
-  }
 
   // Keyboard Hint visibility
   const keyboardHint = document.getElementById('keyboardHint');
