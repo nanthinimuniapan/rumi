@@ -54,12 +54,15 @@
     background: var(--bg);
     color: var(--text-primary);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
-    overflow: hidden;
+    min-height: 100dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
     transition: background 250ms ease;
   }
 
@@ -112,13 +115,21 @@
     100% { transform: translate(-50px, -20px) scale(1) rotate(360deg); }
   }
 
+  main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    padding: var(--space-md);
+  }
+
   .container {
     position: relative;
     z-index: 1;
     width: 100%;
     max-width: 700px;
-    padding: var(--space-xl);
-    margin: var(--space-md);
+    margin: 0 auto;
   }
 
   .card {
@@ -271,6 +282,7 @@
     overflow: hidden;
     min-height: 44px;
     min-width: 44px;
+    touch-action: manipulation;
   }
 
   .btn::before {
@@ -348,6 +360,8 @@
     z-index: 100;
     transition: background 250ms ease, border-color 250ms ease, color 250ms ease, transform 250ms ease;
     outline: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .theme-toggle:hover {
@@ -359,6 +373,11 @@
   .theme-toggle:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
+  }
+
+  @media (max-width: 480px) {
+    .theme-toggle { top: var(--space-sm); right: var(--space-sm); width: 40px; height: 40px; }
+    .theme-toggle svg { width: 18px; height: 18px; }
   }
 
   .theme-toggle svg {
@@ -390,11 +409,13 @@
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 100px;
-    padding: 0.4rem 1rem;
+    padding: 0.5rem 1rem;
     cursor: pointer;
     transition: all 250ms ease;
     outline: none;
-    min-height: 36px;
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .filter-pill:hover {
@@ -440,6 +461,8 @@
     transition: all 200ms ease;
     outline: none;
     position: relative;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .action-btn:hover {
@@ -489,14 +512,34 @@
     letter-spacing: 0.03em;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 480px) {
     .container { padding: var(--space-md); margin: var(--space-xs); }
-    .card { padding: var(--space-xl) var(--space-md); }
-    .quote-text { font-size: 1.25rem; }
-    .quote-wrap { min-height: 180px; }
-    .quote-mark { font-size: 3rem; top: -0.4rem; left: 0; }
-    .source-label { font-size: 0.65rem; }
-    .filter-pill { font-size: 0.75rem; padding: 0.3rem 0.75rem; }
+    .card { padding: var(--space-xl) var(--space-sm); }
+    .quote-text { font-size: 1.15rem; }
+    .quote-wrap { min-height: 160px; }
+    .quote-mark { font-size: 2.5rem; top: -0.3rem; left: 0; }
+    .source-label { font-size: 0.6rem; }
+    .filter-pill { font-size: 0.7rem; padding: 0.4rem 0.7rem; }
+    .site-title { font-size: 1.1rem; letter-spacing: 0.06em; }
+    .action-bar { gap: var(--space-sm); }
+  }
+
+  @media (max-width: 380px) {
+    .card { padding: var(--space-lg) var(--space-xs); }
+    .quote-text { font-size: 1rem; }
+    .quote-wrap { min-height: 140px; }
+    .filter-pills { gap: 6px; }
+    .filter-pill { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
+    .site-title { font-size: 1rem; }
+  }
+
+  @media (orientation: landscape) and (max-height: 500px) {
+    .card { padding: var(--space-lg) var(--space-md); }
+    .quote-text { font-size: 1rem; }
+    .quote-wrap { min-height: 120px; }
+    .site-title { font-size: 1rem; margin-bottom: var(--space-md); }
+    .source-label { margin-bottom: var(--space-md); }
+    .divider { margin: var(--space-lg) auto; }
   }
 
   @media (prefers-reduced-motion: reduce) {
