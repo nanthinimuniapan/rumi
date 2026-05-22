@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Breath of the Beloved — Rumi, Shams Tabrizi, Kahlil Gibran &amp; Rabindranath Tagore</title>
+<title>The Breath of the Beloved — Rumi, Shams Tabrizi &amp; Kahlil Gibran</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%230A0A0F' stroke='%23C9A96E' stroke-width='1.5'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='serif' font-size='18' font-weight='bold' fill='%23C9A96E'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
+:root {
     --bg: #0A0A0F;
-    --bg-card: rgba(18, 18, 28, 0.85);
+    --bg-card: #12121C;
     --text-primary: #F5F0EB;
     --text-muted: #9C928A;
     --accent: #C9A84C;
     --accent-dim: rgba(201, 168, 76, 0.15);
     --accent-glow: rgba(201, 168, 76, 0.08);
     --border: rgba(201, 168, 76, 0.12);
+    --card-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
 
     --space-xs: 4px;
     --space-sm: 8px;
@@ -28,21 +29,22 @@
     --space-2xl: 48px;
     --space-3xl: 64px;
 
-    --font-quote: 'Cormorant Garamond', Georgia, serif;
-    --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-quote: 'Spectral', Georgia, serif;
+    --font-ui: 'Figtree', system-ui, -apple-system, sans-serif;
     --radius: 16px;
     --transition: 250ms ease;
   }
 
   .light-mode {
     --bg: #FAF8F5;
-    --bg-card: rgba(255, 252, 248, 0.92);
+    --bg-card: #FFFCF8;
     --text-primary: #2D2A24;
     --text-muted: #8A8078;
     --accent: #B8923E;
     --border: rgba(184, 146, 62, 0.18);
     --accent-dim: rgba(184, 146, 62, 0.10);
     --accent-glow: rgba(184, 146, 62, 0.06);
+    --card-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
   }
 
   html, body { height: 100%; }
@@ -110,11 +112,6 @@
     100% { transform: translate(-50px, -20px) scale(1) rotate(360deg); }
   }
 
-  @keyframes breathe {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.008); }
-  }
-
   .container {
     position: relative;
     z-index: 1;
@@ -126,25 +123,18 @@
 
   .card {
     background: var(--bg-card);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: var(--space-3xl) var(--space-xl);
     text-align: center;
     position: relative;
-    transition: border-color 250ms ease;
-    animation: breathe 8s ease-in-out infinite;
+    box-shadow: var(--card-shadow);
+    transition: border-color 250ms ease, box-shadow 250ms ease;
   }
 
-  .card::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: var(--radius);
-    background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), transparent 40%, transparent 60%, rgba(201, 168, 76, 0.05));
-    pointer-events: none;
-    z-index: -1;
+  .card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 32px rgba(201, 168, 76, 0.08);
   }
 
   .card::after {
@@ -349,8 +339,6 @@
     min-height: 44px;
     border-radius: 50%;
     background: var(--bg-card);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--border);
     color: var(--text-muted);
     cursor: pointer;
@@ -495,7 +483,7 @@
     font-size: 0.7rem;
     font-weight: 400;
     color: var(--text-muted);
-    opacity: 0.5;
+    opacity: 0.65;
     text-align: center;
     margin-top: var(--space-2xl);
     letter-spacing: 0.03em;
@@ -512,11 +500,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .aurora-blob,
-    .card {
-      animation: none !important;
-    }
-    .card,
+    .aurora-blob { animation: none !important; }
     .card::after,
     .quote-text,
     .attribution,
@@ -619,10 +603,10 @@
         <path d="M1 4v6h6"/>
         <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
       </svg>
-      <span class="btn-label">New Wisdom</span>
+      <span class="btn-label">New Verse</span>
     </button>
 
-    <p class="counter" id="counter" aria-live="polite">1 / 2273</p>
+    <p class="counter" id="counter" aria-live="polite">1 / 2038</p>
 
     <div class="action-bar" id="actionBar">
       <button class="action-btn" id="copyBtn" type="button" aria-label="Copy quote to clipboard">
@@ -630,7 +614,7 @@
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
         </svg>
-        <span class="tooltip" id="copyTooltip">Copied!</span>
+        <span class="tooltip" id="copyTooltip" role="status" aria-live="polite">Copied!</span>
       </button>
       <button class="action-btn" id="shareBtn" type="button" aria-label="Share this quote">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
@@ -645,7 +629,7 @@
 </main>
 
 <footer class="footer" id="footer">
-  <p>2,273 verses from Rumi, Shams Tabrizi, Kahlil Gibran &amp; Rabindranath Tagore · The Breath of the Beloved</p>
+  <p>2,038 verses from Rumi, Shams Tabrizi, Kahlil Gibran &amp; Rabindranath Tagore · The Breath of the Beloved</p>
 </footer>
 </body>
 
@@ -2405,7 +2389,7 @@
     { text: "The sky does not ask the bird for its destination. It offers its vastness.", source: "Kahlil Gibran" },
     { text: "I am the traveler who has lost his map and found that the path is within. Walk with me.", source: "Kahlil Gibran" },
     { text: "The hour of the heart is not measured by the clock. It is measured by the depth of love.", source: "Kahlil Gibran" },
-    { text: "The moment of truth is not announced by the bell. It is recognized by the silence that follows.", source: "Kahlil Gibran" },
+
     { text: "Stray birds of summer come to my window to sing and fly away. And yellow leaves of autumn, which have no songs, flutter and fall there with a sigh.", source: "Rabindranath Tagore" },
     { text: "O Troupe of little vagrants of the world, leave your footprints in my words.", source: "Rabindranath Tagore" },
     { text: "The world puts off its mask of vastness to its lover. It becomes small as one song, as one kiss of the eternal.", source: "Rabindranath Tagore" },
@@ -2691,241 +2675,7 @@
     { text: "Diversity is the law of life. Unity is the law of the spirit.", source: "Rabindranath Tagore" },
     { text: "The spirit of humanity is one. The forms are many.", source: "Rabindranath Tagore" },
     { text: "Let us not be divided by our differences but united by our common humanity.", source: "Rabindranath Tagore" },
-    { text: "The common humanity that binds us is stronger than any force that divides us.", source: "Rabindranath Tagore" },
-    { text: "The river of my life flows to the rhythm of the eternal. Let me not resist the current.", source: "Rabindranath Tagore" },
-    { text: "The current of life carries us all to the same ocean. Why do we fear the journey?", source: "Rabindranath Tagore" },
-    { text: "The journey is the destination. Every step is an arrival.", source: "Rabindranath Tagore" },
-    { text: "Arrival and departure are the same door. We come and go through the heart of the beloved.", source: "Rabindranath Tagore" },
-    { text: "The beloved is the heart of the universe. In that heart, we are all one.", source: "Rabindranath Tagore" },
-    { text: "One with the beloved, we are home. Separated, we wander in the wilderness of the world.", source: "Rabindranath Tagore" },
-    { text: "The wilderness of the world is the garden of God when seen with the eyes of love.", source: "Rabindranath Tagore" },
-    { text: "The eyes of love see the divine in every face, the sacred in every moment.", source: "Rabindranath Tagore" },
-    { text: "Every moment is a gift from the eternal. Open it with gratitude.", source: "Rabindranath Tagore" },
-    { text: "Gratitude is the heart's recognition of the goodness of existence.", source: "Rabindranath Tagore" },
-    { text: "The goodness of existence is the love that created it. Feel that love in every breath.", source: "Rabindranath Tagore" },
-    { text: "Every breath is a prayer. Every heartbeat is a song.", source: "Rabindranath Tagore" },
-    { text: "The song of life is the music of the soul. Sing it with joy.", source: "Rabindranath Tagore" },
-    { text: "Joy is the natural state of the soul. It is covered by the clouds of the mind.", source: "Rabindranath Tagore" },
-    { text: "The clouds of the mind pass. The sun of the soul always shines.", source: "Rabindranath Tagore" },
-    { text: "The sun of the soul is the light of love. It never sets.", source: "Rabindranath Tagore" },
-    { text: "The night of sorrow passes. The dawn of joy is certain.", source: "Rabindranath Tagore" },
-    { text: "Certainty is not in the outer world but in the inner knowing of the heart.", source: "Rabindranath Tagore" },
-    { text: "The heart knows what the mind cannot grasp. Trust the heart.", source: "Rabindranath Tagore" },
-    { text: "The mind is a tool, not a master. Use it with love.", source: "Rabindranath Tagore" },
-    { text: "Love is the master of all. Let love guide your every action.", source: "Rabindranath Tagore" },
-    { text: "Action without love is empty. Love without action is incomplete.", source: "Rabindranath Tagore" },
-    { text: "Complete love is love that serves. Serve with love and find fulfillment.", source: "Rabindranath Tagore" },
-    { text: "Fulfillment is not in having but in giving. Give your heart to the world.", source: "Rabindranath Tagore" },
-    { text: "The world is your home. All beings are your family.", source: "Rabindranath Tagore" },
-    { text: "The family of humanity is one. Let us live as one family.", source: "Rabindranath Tagore" },
-    { text: "Family is not blood alone. It is the bond of the heart.", source: "Rabindranath Tagore" },
-    { text: "The bond of the heart is stronger than any tie of blood.", source: "Rabindranath Tagore" },
-    { text: "The tie of love is the tie that binds the universe together.", source: "Rabindranath Tagore" },
-    { text: "Together we are strong. Alone we are nothing. Love brings us together.", source: "Rabindranath Tagore" },
-    { text: "Togetherness is the joy of the soul. Loneliness is its sorrow.", source: "Rabindranath Tagore" },
-    { text: "Sorrow is the shadow of love. Without love, there is no sorrow.", source: "Rabindranath Tagore" },
-    { text: "The shadow proves the existence of the light. Sorrow proves the depth of love.", source: "Rabindranath Tagore" },
-    { text: "The depth of love is measured by the depth of the heart. Go deep.", source: "Rabindranath Tagore" },
-    { text: "Deep in the heart is the well of silence. Drink from it and be refreshed.", source: "Rabindranath Tagore" },
-    { text: "Refresh your soul in the silence of your own being. The noise of the world can wait.", source: "Rabindranath Tagore" },
-    { text: "The noise of the world is the distraction of the mind. The silence of the heart is the presence of God.", source: "Rabindranath Tagore" },
-    { text: "The presence of God is not in the temple but in the heart that is still.", source: "Rabindranath Tagore" },
-    { text: "Stillness is the language of the soul. Learn to speak it.", source: "Rabindranath Tagore" },
-    { text: "Speak the language of silence, and the universe will answer.", source: "Rabindranath Tagore" },
-    { text: "The universe answers in the language of love. Listen with your heart.", source: "Rabindranath Tagore" },
-    { text: "The heart that listens is the heart that loves. Love and listen.", source: "Rabindranath Tagore" },
-    { text: "Listening is the art of love. Hear the world into being.", source: "Rabindranath Tagore" },
-    { text: "Being is the gift of love. You are because you are loved.", source: "Rabindranath Tagore" },
-    { text: "You are loved beyond measure. Rest in that love.", source: "Rabindranath Tagore" },
-    { text: "Rest in the love that holds the stars in their courses. It holds you too.", source: "Rabindranath Tagore" },
-    { text: "You are held in the palm of the divine. Do not be afraid.", source: "Rabindranath Tagore" },
-    { text: "Fear is the absence of love. Fill your heart with love and fear will dissolve.", source: "Rabindranath Tagore" },
-    { text: "Dissolve the fear in your heart with the light of love. It cannot coexist.", source: "Rabindranath Tagore" },
-    { text: "Coexist with all beings in the spirit of love. We are all children of the same light.", source: "Rabindranath Tagore" },
-    { text: "The light of the divine shines in every heart. See it and be seen by it.", source: "Rabindranath Tagore" },
-    { text: "Seen by the light of love, you are known completely. Rest in that knowing.", source: "Rabindranath Tagore" },
-    { text: "Knowing and being known by love is the homecoming of the soul.", source: "Rabindranath Tagore" },
-    { text: "The soul comes home when it realizes it never left. Home is where love is.", source: "Rabindranath Tagore" },
-    { text: "Love is the home of the soul. Wherever you find love, you find home.", source: "Rabindranath Tagore" },
-    { text: "Home is the heart of the beloved. The beloved's heart is the universe.", source: "Rabindranath Tagore" },
-    { text: "The universe is the body of the beloved. Love it as your own body.", source: "Rabindranath Tagore" },
-    { text: "Your body is a temple of the divine. Treat it with reverence.", source: "Rabindranath Tagore" },
-    { text: "Reverence for life is the foundation of all ethics. Honor all life.", source: "Rabindranath Tagore" },
-    { text: "All life is sacred. Treat every living being with respect.", source: "Rabindranath Tagore" },
-    { text: "Respect for all life is the beginning of wisdom. Wisdom is love in action.", source: "Rabindranath Tagore" },
-    { text: "Action inspired by love is the highest form of worship.", source: "Rabindranath Tagore" },
-    { text: "Worship is not ritual but the offering of your heart to the world.", source: "Rabindranath Tagore" },
-    { text: "The world is the altar of God. Every act of love is a sacrifice.", source: "Rabindranath Tagore" },
-    { text: "The sacrifice of the ego is the offering that God accepts. Let it go.", source: "Rabindranath Tagore" },
-    { text: "Let go of the small self and find the great Self. The great Self is one with all.", source: "Rabindranath Tagore" },
-    { text: "One with all, you are everything. Separate, you are nothing.", source: "Rabindranath Tagore" },
-    { text: "Nothing is the beginning of everything. Become nothing and be filled.", source: "Rabindranath Tagore" },
-    { text: "Be filled with the light of love. Let it overflow into the world.", source: "Rabindranath Tagore" },
-    { text: "The world needs your love. Do not withhold it.", source: "Rabindranath Tagore" },
-    { text: "Withhold nothing from life. Give your all to every moment.", source: "Rabindranath Tagore" },
-    { text: "Every moment is an opportunity to love. Do not miss it.", source: "Rabindranath Tagore" },
-    { text: "Miss no opportunity to love. Life is brief and love is eternal.", source: "Rabindranath Tagore" },
-    { text: "Eternal is the love that flows through the heart of the world.", source: "Rabindranath Tagore" },
-    { text: "The heart of the world beats with the rhythm of love. Feel it.", source: "Rabindranath Tagore" },
-    { text: "Feel the heartbeat of the universe in your own heart. It is the same beat.", source: "Rabindranath Tagore" },
-    { text: "The same rhythm that moves the stars moves your heart. Dance to it.", source: "Rabindranath Tagore" },
-    { text: "Dance to the music of the spheres. Let your soul be light.", source: "Rabindranath Tagore" },
-    { text: "Light is the soul that dances with joy. Heavy is the soul that knows not love.", source: "Rabindranath Tagore" },
-    { text: "Love makes the soul light. Carry nothing but love.", source: "Rabindranath Tagore" },
-    { text: "Love is the only baggage worth carrying. Everything else is excess.", source: "Rabindranath Tagore" },
-    { text: "Excess is the burden of the ego. Simplicity is the freedom of the soul.", source: "Rabindranath Tagore" },
-    { text: "Simplify your life and expand your heart. Less is more when love is the measure.", source: "Rabindranath Tagore" },
-    { text: "The measure of a life is not its length but its depth. Love deeply.", source: "Rabindranath Tagore" },
-    { text: "Deep love is the only love worth giving. Shallow love is but a passing fancy.", source: "Rabindranath Tagore" },
-    { text: "Fancy passes, but true love remains. Cultivate true love.", source: "Rabindranath Tagore" },
-    { text: "True love is patient and kind. It does not seek its own.", source: "Rabindranath Tagore" },
-    { text: "Seeking not its own, true love finds everything. It is the treasure of the soul.", source: "Rabindranath Tagore" },
-    { text: "The treasure of the soul is love. Guard it with your life.", source: "Rabindranath Tagore" },
-    { text: "Your life is the guardian of love. Protect love with your living.", source: "Rabindranath Tagore" },
-    { text: "Live for love, and you will live forever. Love is the only immortality.", source: "Rabindranath Tagore" },
-    { text: "Immortality is not the endless extension of time but the quality of timeless love.", source: "Rabindranath Tagore" },
-    { text: "Timeless love is the love that knows no beginning and no end.", source: "Rabindranath Tagore" },
-    { text: "The beginning and the end are one in the circle of love.", source: "Rabindranath Tagore" },
-    { text: "The circle of love embraces all. No one is excluded.", source: "Rabindranath Tagore" },
-    { text: "Exclusion is the work of fear. Inclusion is the work of love.", source: "Rabindranath Tagore" },
-    { text: "Love includes all. It is the universal embrace of the divine.", source: "Rabindranath Tagore" },
-    { text: "The divine embrace is the home of every soul. Return to it.", source: "Rabindranath Tagore" },
-    { text: "Return to the embrace of love, and you will never feel lost again.", source: "Rabindranath Tagore" },
-    { text: "The flower opens its heart to the sun and is filled with light. Open your heart to love and be filled.", source: "Rabindranath Tagore" },
-    { text: "Be filled with the light that never fades. It is the light of the soul.", source: "Rabindranath Tagore" },
-    { text: "The light of the soul is the light of God. Let it shine through you.", source: "Rabindranath Tagore" },
-    { text: "Shine with the light of love and illuminate the darkness of the world.", source: "Rabindranath Tagore" },
-    { text: "The darkness of the world is the absence of love. Be the light that dispels the darkness.", source: "Rabindranath Tagore" },
-    { text: "Be the light that you are. The world needs your radiance.", source: "Rabindranath Tagore" },
-    { text: "Radiance is the natural expression of the soul that loves. Let your soul shine.", source: "Rabindranath Tagore" },
-    { text: "The soul shines brightest when it serves. Service is love in action.", source: "Rabindranath Tagore" },
-    { text: "Action is the proof of love. Let your actions speak of your love.", source: "Rabindranath Tagore" },
-    { text: "Speak of love with your hands and your feet, not only with your lips.", source: "Rabindranath Tagore" },
-    { text: "The lips speak of love, but the hands do the work of love. Let them be one.", source: "Rabindranath Tagore" },
-    { text: "One in heart, one in action, one in spirit. This is the unity of love.", source: "Rabindranath Tagore" },
-    { text: "Unity is the goal of all creation. Love is the path to unity.", source: "Rabindranath Tagore" },
-    { text: "The path to unity is the path of the heart. Walk it with devotion.", source: "Rabindranath Tagore" },
-    { text: "Devotion is the heart's response to the beauty of the divine.", source: "Rabindranath Tagore" },
-    { text: "The beauty of the divine is everywhere. See it with the eyes of the soul.", source: "Rabindranath Tagore" },
-    { text: "The soul sees what the eyes cannot. It sees the infinite in the finite.", source: "Rabindranath Tagore" },
-    { text: "The finite is the vessel of the infinite. Every form contains the formless.", source: "Rabindranath Tagore" },
-    { text: "The formless is the reality behind all forms. Seek it with your heart.", source: "Rabindranath Tagore" },
-    { text: "The heart seeks the formless through the forms of love. Every beloved is a doorway.", source: "Rabindranath Tagore" },
-    { text: "The doorway to the divine is the heart that loves. Enter through it.", source: "Rabindranath Tagore" },
-    { text: "Enter the sanctuary of the heart and find the peace that passes understanding.", source: "Rabindranath Tagore" },
-    { text: "Understanding comes through love, not through intellect alone.", source: "Rabindranath Tagore" },
-    { text: "Intellect is a tool of the mind. Love is the language of the heart.", source: "Rabindranath Tagore" },
-    { text: "The language of the heart is spoken in silence. Learn to speak it.", source: "Rabindranath Tagore" },
-    { text: "Speak the language of the heart, and the whole world will understand you.", source: "Rabindranath Tagore" },
-    { text: "The whole world understands love. It is the universal language.", source: "Rabindranath Tagore" },
-    { text: "Universal love is the love that embraces all beings. Cultivate it.", source: "Rabindranath Tagore" },
-    { text: "Cultivate the garden of your heart with the water of universal love.", source: "Rabindranath Tagore" },
-    { text: "Universal love is the love of God flowing through the heart of humanity.", source: "Rabindranath Tagore" },
-    { text: "Humanity is one family in the heart of God. Let us live as one.", source: "Rabindranath Tagore" },
-    { text: "One in spirit, diverse in form. This is the beauty of creation.", source: "Rabindranath Tagore" },
-    { text: "Creation is the play of the divine. Play your part with joy.", source: "Rabindranath Tagore" },
-    { text: "Joy is the energy of the universe. Tap into it.", source: "Rabindranath Tagore" },
-    { text: "The universe is a reservoir of joy. Draw from it freely.", source: "Rabindranath Tagore" },
-    { text: "Freely receive the joy of existence. It is your birthright.", source: "Rabindranath Tagore" },
-    { text: "Your birthright is joy, peace, and love. Claim it now.", source: "Rabindranath Tagore" },
-    { text: "Now is the only moment. Do not wait for a future that may never come.", source: "Rabindranath Tagore" },
-    { text: "The future is a dream. The past is a memory. The present is the only reality.", source: "Rabindranath Tagore" },
-    { text: "Reality is the presence of love. Be present to it now.", source: "Rabindranath Tagore" },
-    { text: "Now is the time of love. Do not postpone it.", source: "Rabindranath Tagore" },
-    { text: "Postponement is the enemy of love. Love now, without delay.", source: "Rabindranath Tagore" },
-    { text: "Delay not the expression of your love. Tomorrow may be too late.", source: "Rabindranath Tagore" },
-    { text: "Too late is the regret of those who waited. Do not wait.", source: "Rabindranath Tagore" },
-    { text: "Waiting for the perfect moment is the thief of joy. The moment is now.", source: "Rabindranath Tagore" },
-    { text: "Now is the perfect moment to love. There is no other moment.", source: "Rabindranath Tagore" },
-    { text: "There is no other moment but this one. Make it a moment of love.", source: "Rabindranath Tagore" },
-    { text: "A moment of love is worth a lifetime of waiting. Choose love now.", source: "Rabindranath Tagore" },
-    { text: "Choose love in every moment, and every moment becomes eternal.", source: "Rabindranath Tagore" },
-    { text: "Eternal moments are made of love. Fill your moments with love.", source: "Rabindranath Tagore" },
-    { text: "Love fills the moment with meaning. Without love, time is empty.", source: "Rabindranath Tagore" },
-    { text: "Empty time is the burden of the loveless. Fill your time with love.", source: "Rabindranath Tagore" },
-    { text: "Love fills the emptiness of the soul with the presence of the divine.", source: "Rabindranath Tagore" },
-    { text: "The divine presence is the fullness of love. Experience it now.", source: "Rabindranath Tagore" },
-    { text: "Experience the fullness of love in the silence of your own heart.", source: "Rabindranath Tagore" },
-    { text: "Your own heart is the temple of love. Enter it with reverence.", source: "Rabindranath Tagore" },
-    { text: "Reverence for love is the beginning of wisdom. Honor love in all its forms.", source: "Rabindranath Tagore" },
-    { text: "All forms of love are expressions of the one love. Recognize the one in the many.", source: "Rabindranath Tagore" },
-    { text: "The many are the faces of the one. See the one in every face.", source: "Rabindranath Tagore" },
-    { text: "Every face is a window to the soul. Look through it with love.", source: "Rabindranath Tagore" },
-    { text: "Look with love and see the beauty that has always been there.", source: "Rabindranath Tagore" },
-    { text: "Beauty is the signature of the divine on creation. Read it everywhere.", source: "Rabindranath Tagore" },
-    { text: "Everywhere you look, beauty is waiting to be seen. Open your eyes.", source: "Rabindranath Tagore" },
-    { text: "Open your eyes to the beauty of the world. It is the reflection of divine love.", source: "Rabindranath Tagore" },
-    { text: "Divine love is the source of all beauty. All beautiful things speak of it.", source: "Rabindranath Tagore" },
-    { text: "Speak of love in everything you do. Let your life be a poem of love.", source: "Rabindranath Tagore" },
-    { text: "A poem of love is a life lived with intention. Write your poem daily.", source: "Rabindranath Tagore" },
-    { text: "Daily write your poem of love with your words, your actions, your presence.", source: "Rabindranath Tagore" },
-    { text: "Your presence is the gift you give to the world. Make it a gift of love.", source: "Rabindranath Tagore" },
-    { text: "Love is the gift that never diminishes. Give it freely.", source: "Rabindranath Tagore" },
-    { text: "Freely give your love, and you will receive more than you can hold.", source: "Rabindranath Tagore" },
-    { text: "The heart that gives love is the heart that receives love. It is the law of life.", source: "Rabindranath Tagore" },
-    { text: "The law of life is the law of love. Live by it and prosper.", source: "Rabindranath Tagore" },
-    { text: "Prosperity is not in wealth but in love. The richest heart is the heart that loves most.", source: "Rabindranath Tagore" },
-    { text: "Most love, most life. The measure of your love is the measure of your life.", source: "Rabindranath Tagore" },
-    { text: "Your life is measured by your love. All else is vanity.", source: "Rabindranath Tagore" },
-    { text: "Vanity is the distraction of the ego. Love is the focus of the soul.", source: "Rabindranath Tagore" },
-    { text: "The soul focuses on love. The ego focuses on itself. Choose the soul.", source: "Rabindranath Tagore" },
-    { text: "Choose the soul over the ego, and you choose life over death.", source: "Rabindranath Tagore" },
-    { text: "Death is the end of the ego, not the soul. The soul lives on in love.", source: "Rabindranath Tagore" },
-    { text: "Love is the life of the soul. Without love, the soul is dead.", source: "Rabindranath Tagore" },
-    { text: "The soul that loves is alive. The soul that does not love is a walking grave.", source: "Rabindranath Tagore" },
-    { text: "The grave is not the end for the soul that loves. Love transcends death.", source: "Rabindranath Tagore" },
-    { text: "Death is the gateway to a fuller life. The soul that loves passes through without fear.", source: "Rabindranath Tagore" },
-    { text: "Fear of death is the fear of the ego. The soul knows no death.", source: "Rabindranath Tagore" },
-    { text: "The soul knows that death is a change, not an end. Trust the soul.", source: "Rabindranath Tagore" },
-    { text: "Trust the wisdom of the soul. It knows the way through the darkness.", source: "Rabindranath Tagore" },
-    { text: "The darkness of death is the passage to light. Do not fear the passage.", source: "Rabindranath Tagore" },
-    { text: "The passage of death is the birth into eternal life. Celebrate it.", source: "Rabindranath Tagore" },
-    { text: "Celebrate the life that never ends. It is the life of love.", source: "Rabindranath Tagore" },
-    { text: "The life of love is eternal. It does not begin with birth or end with death.", source: "Rabindranath Tagore" },
-    { text: "Birth and death are the gates of life. Pass through them with grace.", source: "Rabindranath Tagore" },
-    { text: "Grace is the gift of the divine to the soul that trusts. Surrender in grace.", source: "Rabindranath Tagore" },
-    { text: "Surrender to the grace of the divine. It carries you through all storms.", source: "Rabindranath Tagore" },
-    { text: "The storms of life cannot touch the soul that is anchored in love.", source: "Rabindranath Tagore" },
-    { text: "Anchored in love, the soul is safe in every storm. The anchor holds.", source: "Rabindranath Tagore" },
-    { text: "The anchor of love holds in the deepest waters. Trust it.", source: "Rabindranath Tagore" },
-    { text: "Trust the anchor of love, even when you cannot see the shore.", source: "Rabindranath Tagore" },
-    { text: "The shore is there, beyond the horizon of your sight. Sail on.", source: "Rabindranath Tagore" },
-    { text: "Sail on the sea of life with love as your compass and the stars your guide.", source: "Rabindranath Tagore" },
-    { text: "The stars guide the sailor. Love guides the soul. Follow it home.", source: "Rabindranath Tagore" },
-    { text: "Home is the heart of the beloved. The beloved is the heart of the universe.", source: "Rabindranath Tagore" },
-    { text: "The universe is the home of the soul. Feel at home everywhere.", source: "Rabindranath Tagore" },
-    { text: "Everywhere is home when you carry love in your heart.", source: "Rabindranath Tagore" },
-    { text: "Carry love in your heart wherever you go. It is the only luggage you need.", source: "Rabindranath Tagore" },
-    { text: "Need nothing but love. Want nothing but love. Be nothing but love.", source: "Rabindranath Tagore" },
-    { text: "Be love, and you have everything. There is nothing else to seek.", source: "Rabindranath Tagore" },
-    { text: "Seeking ends when you find that you are what you seek.", source: "Rabindranath Tagore" },
-    { text: "You are what you seek. The seeker and the sought are one.", source: "Rabindranath Tagore" },
-    { text: "One with the beloved, the journey ends and begins again.", source: "Rabindranath Tagore" },
-    { text: "The journey of love never ends. It is the eternal return to the source.", source: "Rabindranath Tagore" },
-    { text: "The source of all is love. Return to the source and be refreshed.", source: "Rabindranath Tagore" },
-    { text: "Refreshed in the source of love, you begin again. Each moment is a new beginning.", source: "Rabindranath Tagore" },
-    { text: "Beginning again is the gift of each moment. Take it.", source: "Rabindranath Tagore" },
-    { text: "Take the gift of each new moment and fill it with love.", source: "Rabindranath Tagore" },
-    { text: "Love is the gift that keeps giving. Receive it and pass it on.", source: "Rabindranath Tagore" },
-    { text: "Pass on the gift of love to everyone you meet. It is the only gift that matters.", source: "Rabindranath Tagore" },
-    { text: "Matters not what you have, but what you give. Give love.", source: "Rabindranath Tagore" },
-    { text: "Give love and you give everything. Withhold love and you withhold life.", source: "Rabindranath Tagore" },
-    { text: "Life is love, and love is life. There is nothing else.", source: "Rabindranath Tagore" },
-    { text: "Nothing else exists but love. Everything else is a dream.", source: "Rabindranath Tagore" },
-    { text: "The dream of separation is ending. Wake up to the reality of love.", source: "Rabindranath Tagore" },
-    { text: "Wake up to the love that has always been there. It never left.", source: "Rabindranath Tagore" },
-    { text: "It never left because it never could. Love is the very fabric of your being.", source: "Rabindranath Tagore" },
-    { text: "Your being is love. Your essence is love. Your purpose is love.", source: "Rabindranath Tagore" },
-    { text: "Love is the purpose of life. All other purposes are but shadows of this one.", source: "Rabindranath Tagore" },
-    { text: "This one truth contains all truths: love is all there is.", source: "Rabindranath Tagore" },
-    { text: "All there is, is love. Everything else is commentary.", source: "Rabindranath Tagore" },
-    { text: "The commentary on love is endless. The experience of love is beyond words.", source: "Rabindranath Tagore" },
-    { text: "Beyond words, beyond thought, beyond form — love is the ultimate reality.", source: "Rabindranath Tagore" },
-    { text: "The ultimate reality is love. It is the beginning and the end.", source: "Rabindranath Tagore" },
-    { text: "The beginning and the end meet in love. The circle is complete.", source: "Rabindranath Tagore" },
-    { text: "Complete in love, the soul rests in the heart of the beloved.", source: "Rabindranath Tagore" },
-    { text: "The beloved's heart is the home of the soul. Rest there in peace.", source: "Rabindranath Tagore" },
-    { text: "Peace is the fruit of love. Taste it and know that you are home.", source: "Rabindranath Tagore" },  ];
+    { text: "The common humanity that binds us is stronger than any force that divides us.", source: "Rabindranath Tagore" },  ];
 
   let currentIndex = 0;
   let isAnimating = false;
