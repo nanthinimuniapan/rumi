@@ -32,6 +32,8 @@ A contemplative quote generator featuring Rumi, Shams Tabrizi, Kahlil Gibran & R
 
 Open `rumi-shams.html` in any browser. No build step, no server needed.
 
+**Live:** [rumi-ccc.pages.dev](https://rumi-ccc.pages.dev)
+
 ## Deploy
 
 Any static host works. Cloudflare Pages recommended:
